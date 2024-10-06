@@ -12,14 +12,13 @@ Test the like and dislike counter by testing if the like or dislike counter goes
 Tests ideas for backend:
 Test whether a user can be made and data can be stored inside including an email and password. Test the backend to determine how fast queries are able to be run to find a specific user given user_id. Accurately be able to identify the number of likes for a given post and be able to update that value correctly once a new like is added. Be able to determine if a post is private or public using a query search.
 
-Tests ideas for admin: Automatic Tests:
-Test weather idea field in posts can’t have more than 512 characters
+Tests ideas for admin: 
+Automatic Tests:
+Test weather idea field in posts can’t have more than 512 characters.
+
 Manual Tests: 
 Create a table to store ideas.
-Insert a few ideas into the table, ensuring each idea fits within a 512-character limit.
-Verify that all ideas are visible in the database and that each one contains the necessary information.
-Delete one of the ideas from the table, ensuring the others remain intact and only the deleted idea is removed.
-Drop the entire table, ensuring that no records remain after the table is dropped.
+Insert a few ideas into the table, ensuring each idea fits within a 512-character limit. Verify that all ideas are visible in the database and that each one contains the necessary information. Delete one of the ideas from the table, ensuring the others remain intact and only the deleted idea is removed. Drop the entire table, ensuring that no records remain after the table is dropped.
 
 ## System drawing 
 https://lucid.app/lucidchart/516f5158-a2f9-45bb-adec-38fc204c9524/edit?viewport_loc=-279%2C-78%2C2899%2C1293%2C0_0&invitationId=inv_94fccc9b-75ff-4b9c-a1c3-74b119f140b9
