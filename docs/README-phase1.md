@@ -1,1 +1,81 @@
 # Phase 1 Sprint 5
+
+## User/Admin stories:
+As a user I want to access the application through a web browser so I can add/delete an idea.
+
+As an admin I want to add/drop table entries so that i can manage the ideas posted by users.
+
+## Tests for Each User Story: 
+Test the like and dislike counter by testing if the like or dislike counter goes up by 1. Testing for whether you are able to add friends and making a test to see if your friend count goes up by 1 if you add a friend or down by 1 if you block/remove one. Testing to see if you block a user, the profile will disappear from the website.
+
+
+## Tests ideas for backend:
+ Test whether a user can be made and data can be stored inside including an email and password. Test the backend to determine how fast queries are able to be run to find a specific user given user_id. Accurately be able to identify the number of likes for a given post and be able to update that value correctly once a new like is added. Be able to determine if a post is private or public using a query search.
+
+## System drawing 
+
+## Drawing of a mock web/mobile user interface
+
+## Drawing of state machine for anonymous user persona’s interaction with the application
+
+## Listing of the routes, their purpose, and the format of any passed object
+The routes could look a bit like this:
+
+### 1. `GET /ideas`
+   - **Purpose:** Retrieve a list of all ideas.
+   - **Response Format:** 
+     - Array of message objects, each containing:
+       ```json
+       [
+         {
+           "id": 1,
+           "content": "This is my first idea",
+           "timestamp": "2024-10-05T12:34:56Z"
+         },
+         {
+           "id": 2,
+           "content": "Another idea",
+           "timestamp": "2024-10-05T13:00:00Z"
+         }
+       ]
+       ```
+
+### 2. `POST /ideas`
+   - **Purpose:** Add a new idea
+   - **Request Format:**
+     - JSON object passed in the request body:
+       ```json
+       {
+         "content": "This is my second idea :)"
+       }
+       ```
+   - **Response Format:**
+     - Newly created message object with an auto-generated ID and timestamp:
+       ```json
+       {
+         "id": 3,
+         "content": "This is my third idea",
+         "timestamp": "2024-10-05T14:00:00Z"
+       }
+       ```
+
+### 3. `DELETE /ideas/{id}`
+   - **Purpose:** Delete a message with the given ID.
+   - **Request Format:**
+     - No request body required, but the `id` should be passed as a URL parameter.
+   - **Response Format:** 
+     - A success message:
+       ```json
+       {
+         "status": "success",
+         "message": "idea deleted"
+       }
+       ```
+
+
+
+## Entity relationship diagram of the database table and fields
+
+## Listing (description) of the tests for the backend, admin, web, and mobile
+
+
