@@ -11,6 +11,7 @@ This is a team repository.  It is intended for use during phase 1 and beyond.
 - Backend: Sam Deitch/smd226@lehigh.edu
 - Web Frontend: Anders Heyniger/avh226@lehigh.edu
 - Admin: Brian Badillo/bdb226@lehigh.edu
+- Mobile: Ash Niemann/asn226@lehigh.edu
 
 - Bitbucket Repository: https://bitbucket.org/sml3/cse216_fa24_team_21
 - Jira Board: https://cse216-24sp-ala326.atlassian.net/jira/software/projects/GGT2/boards/35?atlOrigin=eyJpIjoiMmRhYmY4NmMxOTE5NDZmNWI5ZTM4NzU4OTFjNjkxZjIiLCJwIjoiaiJ9
