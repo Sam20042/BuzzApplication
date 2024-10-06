@@ -5,12 +5,16 @@ As a user I want to access the application through a web browser so I can add/de
 
 As an admin I want to add/drop table entries so that i can manage the ideas posted by users.
 
-## Tests for Each User Story: 
+## Listing (description) of the tests for the backend, admin, web, and mobile
+Tests for Each User Story: 
 Test the like and dislike counter by testing if the like or dislike counter goes up by 1. Testing for whether you are able to add friends and making a test to see if your friend count goes up by 1 if you add a friend or down by 1 if you block/remove one. Testing to see if you block a user, the profile will disappear from the website.
 
+Tests ideas for backend:
+Test whether a user can be made and data can be stored inside including an email and password. Test the backend to determine how fast queries are able to be run to find a specific user given user_id. Accurately be able to identify the number of likes for a given post and be able to update that value correctly once a new like is added. Be able to determine if a post is private or public using a query search.
 
-## Tests ideas for backend:
- Test whether a user can be made and data can be stored inside including an email and password. Test the backend to determine how fast queries are able to be run to find a specific user given user_id. Accurately be able to identify the number of likes for a given post and be able to update that value correctly once a new like is added. Be able to determine if a post is private or public using a query search.
+Tests ideas for admin: Automatic Tests:
+Test weather idea field in posts can’t have more than 512 characters
+Manual Tests: 
 
 ## System drawing 
 
@@ -21,7 +25,7 @@ Test the like and dislike counter by testing if the like or dislike counter goes
 ## Listing of the routes, their purpose, and the format of any passed object
 The routes could look a bit like this:
 
-### 1. `GET /ideas`
+### 1. GET /ideas
    - **Purpose:** Retrieve a list of all ideas.
    - **Response Format:** 
      - Array of message objects, each containing:
@@ -40,7 +44,7 @@ The routes could look a bit like this:
        ]
        ```
 
-### 2. `POST /ideas`
+### 2. POST /ideas
    - **Purpose:** Add a new idea
    - **Request Format:**
      - JSON object passed in the request body:
@@ -59,7 +63,7 @@ The routes could look a bit like this:
        }
        ```
 
-### 3. `DELETE /ideas/{id}`
+### 3. DELETE /ideas/{id}
    - **Purpose:** Delete a message with the given ID.
    - **Request Format:**
      - No request body required, but the `id` should be passed as a URL parameter.
@@ -72,10 +76,6 @@ The routes could look a bit like this:
        }
        ```
 
-
-
 ## Entity relationship diagram of the database table and fields
-
-## Listing (description) of the tests for the backend, admin, web, and mobile
-
-
+link:
+https://lucid.app/lucidchart/bb642f5b-6855-418e-ad6d-f705a918baa4/edit?viewport_loc=-89%2C356%2C1564%2C697%2C0_0&invitationId=inv_231d6c96-d58d-4a79-aef6-0e6c977e194e
