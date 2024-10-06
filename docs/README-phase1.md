@@ -15,12 +15,19 @@ Test whether a user can be made and data can be stored inside including an email
 Tests ideas for admin: Automatic Tests:
 Test weather idea field in posts can’t have more than 512 characters
 Manual Tests: 
+Create a table to store ideas.
+Insert a few ideas into the table, ensuring each idea fits within a 512-character limit.
+Verify that all ideas are visible in the database and that each one contains the necessary information.
+Delete one of the ideas from the table, ensuring the others remain intact and only the deleted idea is removed.
+Drop the entire table, ensuring that no records remain after the table is dropped.
 
 ## System drawing 
+https://lucid.app/lucidchart/516f5158-a2f9-45bb-adec-38fc204c9524/edit?viewport_loc=-279%2C-78%2C2899%2C1293%2C0_0&invitationId=inv_94fccc9b-75ff-4b9c-a1c3-74b119f140b9
 
 ## Drawing of a mock web/mobile user interface
 
 ## Drawing of state machine for anonymous user persona’s interaction with the application
+https://lucid.app/lucidchart/888c1b78-6236-4cac-97c4-5459b87a900d/edit?beaconFlow[…]A&invitationId=inv_8afbfedc-a591-416a-a770-7e899d84cbe4&page=0_0
 
 ## Listing of the routes, their purpose, and the format of any passed object
 The routes could look a bit like this:
