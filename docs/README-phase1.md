@@ -7,7 +7,7 @@ As an admin I want to add/drop table entries so that i can manage the ideas post
 
 ## Listing (description) of the tests for the backend, admin, web, and mobile
 Tests for Each User Story: 
-Test the like and dislike counter by testing if the like or dislike counter goes up by 1. Testing for whether you are able to add friends and making a test to see if your friend count goes up by 1 if you add a friend or down by 1 if you block/remove one. Testing to see if you block a user, the profile will disappear from the website.
+Manual Tests:Check if the user has the ability to add or delete ideas/posts. This can be done if the user is able to click the add button. Or click the x or delete button. Likes on posts are incremented by 1 each time the like button is clicked. Dislikes on posts are incremented by 1 every time the dislike button is clicked.Automated Tests: Create a User that contains a certain amount of posts through get. Check to see if that post can be removed or added. Through Post and Delete. Check to see if new likes can be added through post.
 
 Tests ideas for backend:
 Test whether a user can be made and data can be stored inside including an email and password. Test the backend to determine how fast queries are able to be run to find a specific user given user_id. Accurately be able to identify the number of likes for a given post and be able to update that value correctly once a new like is added. Be able to determine if a post is private or public using a query search.
