@@ -11,15 +11,24 @@ Test the like and dislike counter by testing if the like or dislike counter goes
 
 Tests ideas for backend:
 Test whether a user can be made and data can be stored inside including an email and password.
-# POST 'usr/signin' request with params: email, password
-  #  user = find User in database by with the email
-  #  check to make sure the password = the param password in the database
-  #  if you are able to get in
-    #  set user = usr
-    #  return user details
-  #  else
-    #  return failure message
-  #  end
+
+POST 'usr/signin' request with params: email, password
+
+  user = find User in database by with the email
+  
+  check to make sure the password = the param password in the database
+  
+  if you are able to get in
+  
+    set user = usr
+    
+    return user details
+    
+  else
+
+    return failure message
+  end
+  
 End
 
 Tests ideas for Admin: 
