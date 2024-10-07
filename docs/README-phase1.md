@@ -32,8 +32,10 @@ POST 'usr/signin' request with params: email, password
 End
 
 Tests ideas for Admin: 
+
 Manual Test:
 Test if command letters in menu all work and ones that aren’t specified are denied and errored out correctly
+
 Automated Tests: 
 Create a table to store ideas.
 Insert a few ideas into the table, ensuring each idea fits within a 512-character limit.
@@ -42,15 +44,21 @@ Delete one of the ideas from the table, ensuring the others remain intact and on
 Drop the entire table, ensuring that no records remain after the table is dropped.
 
 Test Ideas for Web frontend:
+
 Manual Tests:
-Test: Clicking “like” when not liked:
+Test: Clicking “like” 
+when not liked:
 Changes the color of the button (for the correct idea/message)
+
 Increases the like count by one
+
 Test: Clicking “like” when already liked:
 Changes the color of the button back to normal (for the correct idea/message)
 Decreases the like count by one
+
 Test ideas for mobile:
 Manual Test:
+
 Test: Expand/Collapse Feature
 Test the expand/collapse feature, when clicking the expand/collapse button the first time, it should reveal the text in the body of the idea. When clicked the second time, it will then hide the text.
 
