@@ -7,23 +7,49 @@ As an admin I want to add/drop table entries so that i can manage the ideas post
 
 ## Listing (description) of the tests for the backend, admin, web, and mobile
 Tests for Each User Story: 
-Manual Tests:Check if the user has the ability to add or delete ideas/posts. This can be done if the user is able to click the add button. Or click the x or delete button. Likes on posts are incremented by 1 each time the like button is clicked. Dislikes on posts are incremented by 1 every time the dislike button is clicked.Automated Tests: Create a User that contains a certain amount of posts through get. Check to see if that post can be removed or added. Through Post and Delete. Check to see if new likes can be added through post.
+Test the like and dislike counter by testing if the like or dislike counter goes up by 1. Testing for whether you are able to add friends and making a test to see if your friend count goes up by 1 if you add a friend or down by 1 if you block/remove one. Testing to see if you block a user, the profile will disappear from the website.
 
 Tests ideas for backend:
-Test whether a user can be made and data can be stored inside including an email and password. Test the backend to determine how fast queries are able to be run to find a specific user given user_id. Accurately be able to identify the number of likes for a given post and be able to update that value correctly once a new like is added. Be able to determine if a post is private or public using a query search.
+Test whether a user can be made and data can be stored inside including an email and password.
+# POST 'usr/signin' request with params: email, password
+  #  user = find User in database by with the email
+  #  check to make sure the password = the param password in the database
+  #  if you are able to get in
+    #  set user = usr
+    #  return user details
+  #  else
+    #  return failure message
+  #  end
+End
 
-Tests ideas for admin: 
-Automatic Tests:
-Test weather idea field in posts can’t have more than 512 characters.
-
-Manual Tests: 
+Tests ideas for Admin: 
+Manual Test:
+Test if command letters in menu all work and ones that aren’t specified are denied and errored out correctly
+Automated Tests: 
 Create a table to store ideas.
-Insert a few ideas into the table, ensuring each idea fits within a 512-character limit. Verify that all ideas are visible in the database and that each one contains the necessary information. Delete one of the ideas from the table, ensuring the others remain intact and only the deleted idea is removed. Drop the entire table, ensuring that no records remain after the table is dropped.
+Insert a few ideas into the table, ensuring each idea fits within a 512-character limit.
+Verify that all ideas are visible in the database and that each one contains the necessary information.
+Delete one of the ideas from the table, ensuring the others remain intact and only the deleted idea is removed.
+Drop the entire table, ensuring that no records remain after the table is dropped.
+
+Test Ideas for Web frontend:
+Manual Tests:
+Test: Clicking “like” when not liked:
+Changes the color of the button (for the correct idea/message)
+Increases the like count by one
+Test: Clicking “like” when already liked:
+Changes the color of the button back to normal (for the correct idea/message)
+Decreases the like count by one
+Test ideas for mobile:
+Manual Test:
+Test: Expand/Collapse Feature
+Test the expand/collapse feature, when clicking the expand/collapse button the first time, it should reveal the text in the body of the idea. When clicked the second time, it will then hide the text.
 
 ## System drawing 
 https://lucid.app/lucidchart/516f5158-a2f9-45bb-adec-38fc204c9524/edit?viewport_loc=-279%2C-78%2C2899%2C1293%2C0_0&invitationId=inv_94fccc9b-75ff-4b9c-a1c3-74b119f140b9
 
 ## Drawing of a mock web/mobile user interface
+https://www.figma.com/design/H7GSQHK2SEG8wgoGutukaP/Message-Board---Web-%26-Mobile?node-id=0-1
 
 ## Drawing of state machine for anonymous user persona’s interaction with the application
 https://lucid.app/lucidchart/888c1b78-6236-4cac-97c4-5459b87a900d/edit?beaconFlow[…]A&invitationId=inv_8afbfedc-a591-416a-a770-7e899d84cbe4&page=0_0
