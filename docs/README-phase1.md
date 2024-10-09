@@ -63,13 +63,17 @@ Test: Expand/Collapse Feature
 Test the expand/collapse feature, when clicking the expand/collapse button the first time, it should reveal the text in the body of the idea. When clicked the second time, it will then hide the text.
 
 ## System drawing 
-https://lucid.app/lucidchart/516f5158-a2f9-45bb-adec-38fc204c9524/edit?viewport_loc=-279%2C-78%2C2899%2C1293%2C0_0&invitationId=inv_94fccc9b-75ff-4b9c-a1c3-74b119f140b9
+![System Architecture Diagram](/docs/imgs/system_architecture_diagram.jpeg)
+[Link to System Architecture Diagram](https://lucid.app/lucidchart/516f5158-a2f9-45bb-adec-38fc204c9524/edit?viewport_loc=-279%2C-78%2C2899%2C1293%2C0_0&invitationId=inv_94fccc9b-75ff-4b9c-a1c3-74b119f140b9)
 
 ## Drawing of a mock web/mobile user interface
-https://www.figma.com/design/H7GSQHK2SEG8wgoGutukaP/Message-Board---Web-%26-Mobile?node-id=0-1
+![Web User Interface](/docs/imgs/frontend_web_mockup.jpg)
+![Mobile User Interface](/docs/imgs/frontend_mobile_mockup.jpg)
+[Link to UI Mockups](https://www.figma.com/design/H7GSQHK2SEG8wgoGutukaP/Message-Board---Web-%26-Mobile?node-id=0-1)
 
 ## Drawing of state machine for anonymous user persona’s interaction with the application
-https://lucid.app/lucidchart/888c1b78-6236-4cac-97c4-5459b87a900d/edit?beaconFlow[…]A&invitationId=inv_8afbfedc-a591-416a-a770-7e899d84cbe4&page=0_0
+![State Transition Diagram](/docs/imgs/state_transition_diagram.jpeg)
+[Link to State Transition Diagram](https://lucid.app/lucidchart/888c1b78-6236-4cac-97c4-5459b87a900d/edit?beaconFlow[…]A&invitationId=inv_8afbfedc-a591-416a-a770-7e899d84cbe4&page=0_0)
 
 ## Listing of the routes, their purpose, and the format of any passed object
 The routes could look a bit like this:
@@ -126,5 +130,5 @@ The routes could look a bit like this:
        ```
 
 ## Entity relationship diagram of the database table and fields
-link:
-https://lucid.app/lucidchart/bb642f5b-6855-418e-ad6d-f705a918baa4/edit?viewport_loc=-89%2C356%2C1564%2C697%2C0_0&invitationId=inv_231d6c96-d58d-4a79-aef6-0e6c977e194e
+![ER Diagram](/docs/imgs/er_diagram.jpeg)
+[Link to ER Diagram](https://lucid.app/lucidchart/bb642f5b-6855-418e-ad6d-f705a918baa4/edit?viewport_loc=-89%2C356%2C1564%2C697%2C0_0&invitationId=inv_231d6c96-d58d-4a79-aef6-0e6c977e194e)
