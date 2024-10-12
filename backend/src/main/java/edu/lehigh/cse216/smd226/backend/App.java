@@ -293,4 +293,32 @@ public class App
         // Sets the port on which to listen for requests from the environment (uses default if not found)
         app.start(getIntFromEnv("PORT", DEFAULT_PORT_WEBSERVER));
     }
+
+            /**
+         * Reads arguments from the environment and then uses those
+         * arguments to connect to the database. Either DATABASE_URI should be set,
+         * or the values of four other variables POSTGRES_{IP, PORT, USER, PASS, DBNAME}.
+         */
+        public static void simpleManualTests( String[] argv ){
+            /* holds connection to the database created from environment variables */
+            Database db = Database.getDatabase();
+
+            db.dropTable();
+            db.createTable();
+            db.insertRow("test subject", "test message");
+            db.updateOne(1, "updated test message");
+
+            ArrayList<Database.RowData> list_rd = db.selectAll();
+            System.out.println( "Row data:" );
+            for( Database.RowData rd : list_rd )
+                System.out.println( ">\t" + rd );
+
+            Database.RowData single_rd = db.selectOne(1);
+            System.out.println( "Single row: " + single_rd );
+            
+            db.deleteRow(1);
+            
+            if( db != null )
+                db.disconnect();
+        }
 }
