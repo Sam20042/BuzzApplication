@@ -49,7 +49,7 @@ function CreateIdea(props) {
                     type="button"
                     onClick={() => {
                         const new_key = ideas[ideas.length - 1].id + 1;
-                        setIdeas([...ideas, { id: new_key, title: "Test Title " + new_key, author: "Test Title" + new_key, message: new_idea, likes: 666 }]);
+                        setIdeas([...ideas, { id: new_key, title: "Idea " + new_key, author: "Anonymous User", message: new_idea, likes: 666 }]);
                         console.log("updated");
                         changeInput("button");
                     }}

@@ -16,7 +16,7 @@ function Idea(props) {
                 Placeholder
             </div>
             <div className="info">
-                <div className="labels">
+                <div className="idea-content">
                     {/* <div className="title">
                         <h3>{title}</h3>
                     </div>
@@ -28,7 +28,8 @@ function Idea(props) {
                     </div>
                 </div>
                 <div className="likes">
-                    <button type="button" className="like_button" onClick={() => setLikes(likes + 1)}>Like!</button>
+                    <button type="button" className="like_button" onClick={() => setLikes(likes + 1)}>Like</button>
+                    <button type="button" className="dislike_button" onClick={() => setLikes(likes - 1)}>Dislike</button>
                     <span className="like_count">{likes}</span>
                 </div>
             </div>

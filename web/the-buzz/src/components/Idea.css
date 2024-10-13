@@ -21,10 +21,11 @@
     background-color: lightgray;
 }
 
-.labels {
+.idea-content {
     width: 75%;
     float: left;
-    margin-left: 2%
+    margin-left: 2%;
+    word-wrap: break-word;
 }
 
 .likes {
@@ -42,11 +43,20 @@
     transform: translateY(-50%);
 }
 
+.dislike_button {
+    margin: 0;
+    position: absolute;
+    top: 50%;
+    left: 25%;
+    -ms-transform: translateY(-50%);
+    transform: translateY(-50%);
+}
+
 .like_count {
     margin: 0;
     position: absolute;
     top: 50%;
-    left: 50%;
+    left: 60%;
     -ms-transform: translateY(-50%);
     transform: translateY(-50%);
 }
