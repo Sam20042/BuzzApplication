@@ -254,7 +254,7 @@ public class App
         /* ----- the server routing logic will go here ----- */
 
         // don't forget: nothing happens until we `start` the server
-        app.start( /*default is 8080*/ );
+        app.start(getIntFromEnv("PORT", DEFAULT_PORT_WEBSERVER));
     }
 
             /**
