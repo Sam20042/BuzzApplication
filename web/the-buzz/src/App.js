@@ -1,6 +1,7 @@
 import logo from './logo.svg';
 import './App.css';
 import Ideas from './components/IdeaRows.js';
+import CreateIdea from './components/CreateIdea.js';
 
 function ReactBase() {
   return (
@@ -33,9 +34,12 @@ function App() {
   return (
     <>
       <div className="App">
-        <h1>Hello World!</h1>
+        <h1>The Buzz</h1>
       </div>
       <div>
+        <CreateIdea />
+      </div>
+      <div className="ideaRows">
         <Ideas ideas={ideas} />
       </div>
     </>

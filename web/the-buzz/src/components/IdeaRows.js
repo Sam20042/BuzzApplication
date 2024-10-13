@@ -1,5 +1,6 @@
 import Idea from './Idea.js';
 
+
 function IdeaRows(props) {
     const ideas = props.ideas;
 

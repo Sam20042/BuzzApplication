@@ -1,0 +1,21 @@
+.create-idea {
+    width: 60%;
+    height: 100px;
+    margin-left: 20%;
+    margin-right: 20%;
+    margin-bottom: 2%;
+}
+
+.create-idea-button {
+    text-align: center;
+    width: 100%;
+    height: 100%;
+    font-size: 150%;
+
+}
+
+.write-idea-box {
+    width: 100%;
+    height: 100%;
+    font-size: 120%;
+}
