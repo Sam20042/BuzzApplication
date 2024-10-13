@@ -18,7 +18,7 @@ import com.google.gson.*;
  */
 public class App 
 {
-    private static Database db;
+    public static Database db;
      /** Not particularly elegant, but we can activate different mains by commenting/uncommenting */
         /** The default port our webserver uses. We set it to Javalin's default, 8080 */
     public static final int DEFAULT_PORT_WEBSERVER = 8080;
@@ -74,23 +74,6 @@ public class App
         Javalin app = Javalin
                 .create( 
                     config -> {
-                        config.staticFiles.add(staticFiles -> {
-                            staticFiles.hostedPath = "/";                   // change to host files on a subpath, like '/assets'
-                            String static_location_override = System.getenv("STATIC_LOCATION");
-                            if (static_location_override == null) { // serve from jar; files located in src/main/resources/public
-                                staticFiles.directory = "/public";                  // the directory where your files are located
-                                staticFiles.location = Location.CLASSPATH;          // Location.CLASSPATH (jar)
-                            } else { // serve from filesystem
-                                System.out.println( "Overriding location of static file serving using STATIC_LOCATION env var: " + static_location_override );
-                                staticFiles.directory = static_location_override;   // the directory where your files are located
-                                staticFiles.location = Location.EXTERNAL;           // Location.EXTERNAL (file system)
-                            }
-                            staticFiles.precompress = false;                   // if the files should be pre-compressed and cached in memory (optimization)
-                            // staticFiles.aliasCheck = null;                  // you can configure this to enable symlinks (= ContextHandler.ApproveAliases())
-                            // staticFiles.headers = Map.of(...);              // headers that will be set for the files
-                            // staticFiles.skipFileFunction = req -> false;    // you can use this to skip certain files in the dir, based on the HttpServletRequest
-                            // staticFiles.mimeTypes.add(mimeType, ext);       // you can add custom mimetypes for extensions
-                        });
                         config.requestLogger.http( 
                             (ctx, ms) -> { 
                                 System.out.printf( "%s%n", "=".repeat(42) );
@@ -251,24 +234,6 @@ public class App
         Javalin app = Javalin
                 .create( 
                     config -> {
-                        // set up static file serving. See: https://javalin.io/documentation#staticfileconfig
-                        config.staticFiles.add(staticFiles -> {
-                            staticFiles.hostedPath = "/";                   // change to host files on a subpath, like '/assets'
-                            String static_location_override = System.getenv("STATIC_LOCATION");
-                            if (static_location_override == null) { // serve from jar; files located in src/main/resources/public
-                                staticFiles.directory = "/public";                  // the directory where your files are located
-                                staticFiles.location = Location.CLASSPATH;          // Location.CLASSPATH (jar)
-                            } else { // serve from filesystem
-                                System.out.println( "Overriding location of static file serving using STATIC_LOCATION env var: " + static_location_override );
-                                staticFiles.directory = static_location_override;   // the directory where your files are located
-                                staticFiles.location = Location.EXTERNAL;           // Location.EXTERNAL (file system)
-                            }
-                            staticFiles.precompress = false;                   // if the files should be pre-compressed and cached in memory (optimization)
-                            // staticFiles.aliasCheck = null;                  // you can configure this to enable symlinks (= ContextHandler.ApproveAliases())
-                            // staticFiles.headers = Map.of(...);              // headers that will be set for the files
-                            // staticFiles.skipFileFunction = req -> false;    // you can use this to skip certain files in the dir, based on the HttpServletRequest
-                            // staticFiles.mimeTypes.add(mimeType, ext);       // you can add custom mimetypes for extensions
-                        });
                         config.requestLogger.http( 
                             (ctx, ms) -> { 
                                 System.out.printf( "%s%n", "=".repeat(42) );
@@ -290,8 +255,6 @@ public class App
 
         // don't forget: nothing happens until we `start` the server
         app.start( /*default is 8080*/ );
-        // Sets the port on which to listen for requests from the environment (uses default if not found)
-        //app.start(getIntFromEnv("PORT", DEFAULT_PORT_WEBSERVER));
     }
 
             /**
