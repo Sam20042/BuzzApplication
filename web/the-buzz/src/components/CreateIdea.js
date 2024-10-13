@@ -1,4 +1,4 @@
-import { useState, useContext } from 'react';
+import { useState } from 'react';
 import './CreateIdea.css';
 
 
@@ -28,29 +28,28 @@ function CreateIdea(props) {
     }
 
     function WriteIdeaBox(props) {
-        // const { ideas, setIdeas } = useContext(UserContext);
-        // let updated_ideas = ideas;
-        // updated_ideas.append({ id: 4, title: "test 4", author: "test 4", message: "test 4", likes: 666 })
-        // console.log(ideas);
         const [ideas, setIdeas] = props.state;
+        const [new_idea, setNewIdea] = useState('');
+
+        const handleChange = (event) => {
+            setNewIdea(event.target.value);
+        };
         return (
             <>
-                {/* <input type="text" 
-                    className="write-idea-box" 
-                    textarea=
-                    placeholder="Write your idea here..." 
-                /> */}
                 <textarea
                     className="write-idea-box"
                     name="new_idea"
                     rows="10"
                     cols="5"
+                    onChange={handleChange}
+                    placeholder="What's your thoughts?"
                 />
                 <button
                     className="submit-idea-button"
                     type="button"
                     onClick={() => {
-                        setIdeas([...ideas, { id: 4, title: "test 4", author: "test 4", message: "test 4", likes: 666 }]);
+                        const new_key = ideas[ideas.length - 1].id + 1;
+                        setIdeas([...ideas, { id: new_key, title: "Test Title " + new_key, author: "Test Title" + new_key, message: new_idea, likes: 666 }]);
                         console.log("updated");
                         changeInput("button");
                     }}

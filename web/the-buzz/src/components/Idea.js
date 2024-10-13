@@ -17,11 +17,14 @@ function Idea(props) {
             </div>
             <div className="info">
                 <div className="labels">
-                    <div className="title">
+                    {/* <div className="title">
                         <h3>{title}</h3>
                     </div>
                     <div className="author" >
                         <h4>{author}</h4>
+                    </div> */}
+                    <div className="message">
+                        <h4>{message}</h4>
                     </div>
                 </div>
                 <div className="likes">
