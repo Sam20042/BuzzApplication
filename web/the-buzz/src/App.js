@@ -1,3 +1,4 @@
+import { useState, createContext } from 'react';
 import logo from './logo.svg';
 import './App.css';
 import Ideas from './components/IdeaRows.js';
@@ -24,21 +25,38 @@ function ReactBase() {
   );
 }
 
+//const UserContext = createContext();
+
 function App() {
-  const ideas = [
-    { id: 1, title: "Test title 1", author: "Test author 1", likes: 1 },
-    { id: 2, title: "Test title 2", author: "Test author 2", likes: 10 },
-    { id: 3, title: "Test title 3", author: "Test author 3", likes: 100 },
-  ];
+
+
+  const ideasState = useState([
+    { id: 1, title: "Test title 1", author: "Test author 1", message: "test message 1", likes: 1 },
+    { id: 2, title: "Test title 2", author: "Test author 2", message: "test message 2", likes: 10 },
+    { id: 3, title: "Test title 3", author: "Test author 3", message: "test message 3", likes: 100 },
+  ]);
+
+  const [ideas, setIdeas] = ideasState;
+
+  // handleCallback = (newIdea) => {
+  //   setIdeas(previousIdeas => {
+  //     return [...previousIdeas, newIdea];
+  //   })
+  // }
+
+  // handleCallback({ id: 4, title: "Test title 4", author: "Test author 4", message: "test message 4", likes: 250 });
+
 
   return (
     <>
       <div className="App">
         <h1>The Buzz</h1>
       </div>
+      {/* <UserContext.Provider value={{ ideas, setIdeas }}> */}
       <div>
-        <CreateIdea />
+        <CreateIdea state={ideasState} />
       </div>
+      {/* </UserContext.Provider> */}
       <div className="ideaRows">
         <Ideas ideas={ideas} />
       </div>

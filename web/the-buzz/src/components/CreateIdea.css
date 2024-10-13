@@ -8,14 +8,28 @@
 
 .create-idea-button {
     text-align: center;
-    width: 100%;
+    width: 90%;
     height: 100%;
     font-size: 150%;
 
 }
 
 .write-idea-box {
-    width: 100%;
+    width: 85.42%;
     height: 100%;
     font-size: 120%;
+    float: left;
+    resize: none;
+}
+
+.submit-idea-button {
+    width: 14%;
+    height: 52.5%;
+    float: right;
+}
+
+.cancel-idea-button {
+    width: 14%;
+    height: 52.5%;
+    float: right;
 }
