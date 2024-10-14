@@ -21,7 +21,7 @@ public class Database {
     /** the SQL for mUpdateOne */
     private static final String SQL_UPDATE_ONE_TBLDATA_2ARG = 
             "UPDATE tblData" + 
-            " SET subject = ?, message = ?" + 
+            " SET likes = ?, message = ?" + 
             " WHERE id = ?";
 
     /** safely performs mUpdateOne = mConnection.prepareStatement("UPDATE tblData SET message = ? WHERE id = ?"); */
@@ -40,19 +40,19 @@ public class Database {
     }
 
     /**
-     * Update the subject and message for a row in the database
+     * Update the likes and message for a row in the database
      * @param id The id of the row to update
-     * @param subject The new message subject
+     * @param likes The new message like
      * @param message The new message contents
      * @return The number of rows that were updated.  -1 indicates an error.
      */
-    int updateOne(int id, String subject, String message) {
+    int updateOne(int id, int likes, String message) {
         if( mUpdateOne_2arg == null )  // not yet initialized, do lazy init
             init_mUpdateOne_2arg();    // lazy init
         int res = -1;
         try {
-            System.out.println( "Database operation: updateOne(int id, String subject, String message)" );
-            mUpdateOne_2arg.setString(1, subject);
+            System.out.println( "Database operation: updateOne(int id, int likes, String message)" );
+            mUpdateOne_2arg.setInt(1, likes);
             mUpdateOne_2arg.setString(2, message);
             mUpdateOne_2arg.setInt(3, id);
             res = mUpdateOne_2arg.executeUpdate();
@@ -71,7 +71,7 @@ public class Database {
      * abstract representation of a row of the database.  RowData and the 
      * Database are tightly coupled: if one changes, the other should too.
      */
-    public static record RowData (int mId, String mSubject, String mMessage) {}
+    public static record RowData (int mId, int mLikes, String mMessage) {}
 
     /** Connection to db. An open connection if non-null, null otherwise */
     private Connection mConnection;
@@ -83,7 +83,7 @@ public class Database {
     private static final String SQL_CREATE_TABLE = 
             "CREATE TABLE tblData (" + 
             " id SERIAL PRIMARY KEY," + 
-            " subject VARCHAR(50) NOT NULL," +
+            " likes INT NOT NULL," +
             " message VARCHAR(500) NOT NULL)";
     // NB: we can easily get ourselves in trouble here by typing the
     //     SQL incorrectly.  We really should have things like "tblData"
@@ -182,17 +182,17 @@ public class Database {
 
     /**
      * Insert a row into the database
-     * @param subject The subject for this new row
+     * @param likes The likes for this new row
      * @param message The message body for this new row
      * @return The number of rows that were inserted
      */
-    int insertRow(String subject, String message) {
+    int insertRow(int likes, String message) {
         if( mInsertOne == null )  // not yet initialized, do lazy init
             init_mInsertOne();    // lazy init
         int count = 0;
         try {
-            System.out.println( "Database operation: insertRow(String, String)" );
-            mInsertOne.setString(1, subject);
+            System.out.println( "Database operation: insertRow(Int, String)" );
+            mInsertOne.setInt(1, likes);
             mInsertOne.setString(2, message);
             count += mInsertOne.executeUpdate();
         } catch (SQLException e) {
@@ -289,14 +289,14 @@ public class Database {
     }
 
     //////////////////////////  SELECT ALL  //////////////////////////
-    /** ps to return all rows from tblData, but only the id and subject columns */
+    /** ps to return all rows from tblData, but only the id and likes columns */
     private PreparedStatement mSelectAll;
     /** the SQL for mSelectAll */
     private static final String SQL_SELECT_ALL_TBLDATA = 
-            "SELECT id, subject" + 
+            "SELECT id, likes" + 
             " FROM tblData;";
 
-    /** safely performs mSelectAll = mConnection.prepareStatement("SELECT id, subject FROM tblData"); */
+    /** safely performs mSelectAll = mConnection.prepareStatement("SELECT id, likes FROM tblData"); */
     private boolean init_mSelectAll(){
         // return true on success, false otherwise
         try {
@@ -312,7 +312,7 @@ public class Database {
     }
 
     /**
-     * Query the database for a list of all subjects and their IDs
+     * Query the database for a list of all likes and their IDs
      * @return All rows, as an ArrayList; note that message is intentionally not returned
      */
     ArrayList<RowData> selectAll() {
@@ -324,8 +324,8 @@ public class Database {
             ResultSet rs = mSelectAll.executeQuery();
             while (rs.next()) {
                 int id = rs.getInt("id");
-                String subject = rs.getString("subject");
-                RowData data = new RowData(id, subject, null);
+                int likes = rs.getInt("likes");
+                RowData data = new RowData(id, likes, null);
                 res.add(data);
             }
             rs.close();  // remember to close the result set
@@ -375,9 +375,9 @@ public class Database {
             ResultSet rs = mSelectOne.executeQuery();
             if (rs.next()) {
                 int id = rs.getInt("id");
-                String subject = rs.getString("subject");
+                int likes = rs.getInt("likes");
                 String message = rs.getString("message");
-                data = new RowData(id, subject, message);
+                data = new RowData(id, likes, message);
             }
             rs.close();  // remember to close the result set
         } catch (SQLException e) {

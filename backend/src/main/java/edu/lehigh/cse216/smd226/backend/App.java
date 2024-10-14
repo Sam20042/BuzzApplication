@@ -123,7 +123,7 @@ public class App
             SimpleRequest req = gson.fromJson(ctx.body(), SimpleRequest.class);
 
             // NB: update entry in MockDataStore; updateOne checks for null title and message and invalid ids
-            int result = db.updateOne(idx, req.mTitle(), req.mMessage());
+            int result = db.updateOne(idx, req.mLikes(), req.mMessage());
             if (result == -1) {
                 resp = new StructuredResponse("error", "unable to update row " + idx, null);
             } else {
@@ -197,7 +197,7 @@ public class App
             // NB: add to database; insertRow method DOES NOT check for null title and message
             //     however, our "create table" sql command does specify a "NOT NULL" constraint
             // int newId = dataStore.createEntry(req.mTitle(), req.mMessage());
-            int newId = db.insertRow(req.mTitle(), req.mMessage());
+            int newId = db.insertRow(req.mLikes(), req.mMessage());
             if (newId == -1) {
                 resp = new StructuredResponse("error", "error performing insertion (title or message null?)", null);
             } else {
@@ -268,7 +268,7 @@ public class App
 
             db.dropTable();
             db.createTable();
-            db.insertRow("test subject", "test message");
+            db.insertRow(5, "test message");
             db.updateOne(1, "updated test message");
 
             ArrayList<Database.RowData> list_rd = db.selectAll();
