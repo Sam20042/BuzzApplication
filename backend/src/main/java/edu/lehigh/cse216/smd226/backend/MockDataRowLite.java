@@ -9,9 +9,9 @@ package edu.lehigh.cse216.smd226.backend;
  * JSON, so we need to make their fields public.
  * 
  * @param mId see MockDataRow.mId
- * @param mTitle see DataRow.mTitle
+ * @param mMessage see DataRow.mMessage
  */
-public record MockDataRowLite( int mId, String mTitle ) { 
+public record MockDataRowLite( int mId, String mMessage ) { 
     /**
      * Create a DataRowLite by copying fields from a DataRow
      * @param data The MockDataRow on which to base the lite version (without date and content)

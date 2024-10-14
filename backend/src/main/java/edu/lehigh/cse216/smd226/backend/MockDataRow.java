@@ -11,13 +11,13 @@ import java.util.Date;
  * so it is convenient that all record fields are public. This is ok because
  * all fields are immutable. 
  */
-public record MockDataRow( int mId, String mTitle, String mContent, Date mCreated ){
+public record MockDataRow( int mId, String mTitle, int mLikes, Date mCreated ){
 
     /**
      * We override the default constructor to set a null mCreated to the current time
      * @param mId The unique identifier associated with this element. Can be null
      * @param mTitle The title for this row of data. Can be null
-     * @param mContent The content for this row of data. Can be null
+     * @param mLikes The content for this row of data. Can be null
      * @param mCreated The creation date for this row of data; if null, sets it to current system clock time
      */
     public MockDataRow {
@@ -37,20 +37,20 @@ public record MockDataRow( int mId, String mTitle, String mContent, Date mCreate
     public static class Builder{
         public int mId;
         public String mTitle;
-        public String mContent;
+        public int mLikes;
         public Date mCreated;
 
         private Builder(){}
         private Builder( MockDataRow mdr ){
             this.mId = mdr.mId;
             this.mTitle = mdr.mTitle;
-            this.mContent = mdr.mContent;
+            this.mLikes = mdr.mLikes;
             this.mCreated = mdr.mCreated;
         }
         
         /** returns a new MockDataRow instance with currently set values of builder */
         public MockDataRow build(){
-            return new MockDataRow(mId, mTitle, mContent, mCreated);
+            return new MockDataRow(mId, mTitle, mLikes, mCreated);
         }
     }
 }

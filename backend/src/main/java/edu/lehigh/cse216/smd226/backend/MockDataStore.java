@@ -41,16 +41,16 @@ public class MockDataStore {
      * tutorial.
      * 
      * @param title The title for this newly added row
-     * @param content The content for this row
+     * @param likes Number of likes for this post
      * @return the ID of the new row, or -1 if no row was created
      */
-    public synchronized int createEntry(String title, String content) {
-        if (title == null || content == null)
+    public synchronized int createEntry(String title, int likes) {
+        if (title == null || likes == 0)
             return -1;
         // NB: we can safely assume that id is greater than the largest index in 
         //     mRows, and thus we can use the index-based add() method
         int id = mCounter++;
-        mRows.add(id, new MockDataRow(id, title, content, null) );
+        mRows.add(id, new MockDataRow(id, title, likes, null) );
         return id;
     }
 
@@ -82,17 +82,17 @@ public class MockDataStore {
         return data;
     }
      /**
-     * Update the title and content of a row in the MockDataStore
+     * Update the title and likes of a row in the MockDataStore
      *
      * @param id The Id of the row to update
      * @param title The new title for the row
-     * @param content The new content for the row
+     * @param likes new likes for the row
      * @return the row if it exists (copy not required because its immutable), or null otherwise
      */
-    public synchronized MockDataRow updateOne(int id, String title, String content) {
+    public synchronized MockDataRow updateOne(int id, String title, int likes) {
         // Do not update if we don't have valid data
-        if (title == null || content == null){
-            System.err.println( "ERROR: attempt to updateOne using a null title or content" );
+        if (title == null || likes == 0){
+            System.err.println( "ERROR: attempt to updateOne using a null title or likes" );
             return null;
         }
         // Only update if the current entry is valid (not off the end of our ArrayList)
@@ -102,7 +102,7 @@ public class MockDataStore {
         }
         // Retrieve, update, and then return the MockDataRow
         MockDataRow rowOrig = mRows.get(id);
-        MockDataRow rowUpdated = new MockDataRow(rowOrig.mId(), title, content, rowOrig.mCreated());
+        MockDataRow rowUpdated = new MockDataRow(rowOrig.mId(), title, likes, rowOrig.mCreated());
         mRows.set(id, rowUpdated);
         return mRows.get(id);
     }
