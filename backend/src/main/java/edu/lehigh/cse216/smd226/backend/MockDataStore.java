@@ -40,17 +40,17 @@ public class MockDataStore {
      * may not be the most appropriate technique, but it is sufficient for this 
      * tutorial.
      * 
-     * @param title The title for this newly added row
+     * @param message The message for this newly added row
      * @param likes Number of likes for this post
      * @return the ID of the new row, or -1 if no row was created
      */
-    public synchronized int createEntry(String title, int likes) {
-        if (title == null || likes == 0)
+    public synchronized int createEntry(String message, int likes) {
+        if (message == null || likes == 0)
             return -1;
         // NB: we can safely assume that id is greater than the largest index in 
         //     mRows, and thus we can use the index-based add() method
         int id = mCounter++;
-        mRows.add(id, new MockDataRow(id, title, likes, null) );
+        mRows.add(id, new MockDataRow(id, message, likes, null) );
         return id;
     }
 
@@ -68,13 +68,13 @@ public class MockDataStore {
     }
 
     /**
-     * Get all of the ids and titles that are present in the MockDataStore
+     * Get all of the ids and messages that are present in the MockDataStore
      * Why a MockDataRowLite rather than MockDataRow? To conserve bandwidth.
      * @return An ArrayList with all of the data; everything is immutable
      */
     public synchronized ArrayList<MockDataRowLite> readAll() {
         ArrayList<MockDataRowLite> data = new ArrayList<>();
-        // NB: our ArrayList only has ids and titles to conserve data transfer
+        // NB: our ArrayList only has ids and messages to conserve data transfer
         for (MockDataRow row : mRows) {
             if (row != null)
                 data.add(new MockDataRowLite(row));
@@ -82,17 +82,17 @@ public class MockDataStore {
         return data;
     }
      /**
-     * Update the title and likes of a row in the MockDataStore
+     * Update the message and likes of a row in the MockDataStore
      *
      * @param id The Id of the row to update
-     * @param title The new title for the row
+     * @param message The new message for the row
      * @param likes new likes for the row
      * @return the row if it exists (copy not required because its immutable), or null otherwise
      */
-    public synchronized MockDataRow updateOne(int id, String title, int likes) {
+    public synchronized MockDataRow updateOne(int id, String message, int likes) {
         // Do not update if we don't have valid data
-        if (title == null || likes == 0){
-            System.err.println( "ERROR: attempt to updateOne using a null title or likes" );
+        if (message== null || likes == 0){
+            System.err.println( "ERROR: attempt to updateOne using a null message or likes" );
             return null;
         }
         // Only update if the current entry is valid (not off the end of our ArrayList)
@@ -102,7 +102,7 @@ public class MockDataStore {
         }
         // Retrieve, update, and then return the MockDataRow
         MockDataRow rowOrig = mRows.get(id);
-        MockDataRow rowUpdated = new MockDataRow(rowOrig.mId(), title, likes, rowOrig.mCreated());
+        MockDataRow rowUpdated = new MockDataRow(rowOrig.mId(), message, likes, rowOrig.mCreated());
         mRows.set(id, rowUpdated);
         return mRows.get(id);
     }

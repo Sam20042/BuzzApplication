@@ -17,6 +17,6 @@ public record MockDataRowLite( int mId, String mMessage ) {
      * @param data The MockDataRow on which to base the lite version (without date and content)
      */
     public MockDataRowLite (MockDataRow data) {
-        this( data.mId(), data.mTitle() );
+        this( data.mId(), data.mMessage() );
     }
 }

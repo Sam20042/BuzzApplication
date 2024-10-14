@@ -19,12 +19,12 @@ public class MockDataRowTest extends TestCase{
         return new TestSuite(MockDataRow.class);
     }
     public void testConstructor() {
-        String title = "Test Title";
+        String message = "Test Message";
         int likes = 5;
         int id = 17;
-        MockDataRow d = new MockDataRow(id, title, likes, null); //date is set to null at the moment
+        MockDataRow d = new MockDataRow(id, message, likes, null); //date is set to null at the moment
 
-        assertTrue(d.mTitle().equals(title));
+        assertTrue(d.mMessage().equals(message));
         assertTrue(d.mLikes() == likes);
         assertTrue(d.mId() == id);
         assertFalse(d.mCreated() == null); // this can help catch subtle bugs!
