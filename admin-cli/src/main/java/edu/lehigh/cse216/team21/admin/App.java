@@ -92,14 +92,22 @@ public class App {
                         continue;
                     System.out.println("  " + res_1 + " rows deleted");
                     break;
+                case 'f':
+                case 'F':
+                    db.insertRow("Brownie Bake Fundraiser", 50);
+                    db.insertRow("Recruit Interns from Lehigh", 89);
+                    db.insertRow("We should combine Birthday Celebrations per month to save money", 2);
+                    System.out.println(3 + " rows added");
+                    break;
             }
             if (action == 'q' || action == 'Q') {
                 break;
             }
         }
+        db.disconnect();
         // Always remember to disconnect from the database when the program
         // exits
-        db.disconnect();
+
     }
 
     /**
@@ -109,6 +117,7 @@ public class App {
         System.out.println("Main Menu");
         System.out.println("  [T/t] Create tblData");
         System.out.println("  [D/d] Drop tblData");
+        System.out.println("  [F/f] Fill database with test ideas");
         System.out.println("  [1] Query for a specific row");
         System.out.println("  [-] Delete a row");
         System.out.println("  [Q/q] Quit Program");
@@ -124,7 +133,7 @@ public class App {
      */
     static char prompt(BufferedReader in) {
         // The valid actions:
-        String actions = "TtDd1-Qq?";
+        String actions = "TtDdFf1-Qq?";
 
         // We repeat until a valid single-character option is selected
         while (true) {
