@@ -72,16 +72,34 @@ public class App
     public static void main_inMemory_datastore( String[] args ){
         // our javalin app on which most operations must be performed
         Javalin app = Javalin
-                .create( 
-                    config -> {
-                        config.requestLogger.http( 
-                            (ctx, ms) -> { 
-                                System.out.printf( "%s%n", "=".repeat(42) );
-                                System.out.printf( "%s\t%s\t%s%nfull url: %s%n", ctx.scheme(), ctx.method().name(), ctx.path(), ctx.fullUrl() );                                
-                            } 
-                        ); 
-                    } 
-                );
+            .create( 
+                config -> {
+                    config.staticFiles.add(staticFiles -> {
+                        staticFiles.hostedPath = "/";                   // change to host files on a subpath, like '/assets'
+                        String static_location_override = System.getenv("STATIC_LOCATION");
+                        if (static_location_override == null) { // serve from jar; files located in src/main/resources/public
+                            staticFiles.directory = "/public";                  // the directory where your files are located
+                            staticFiles.location = Location.CLASSPATH;          // Location.CLASSPATH (jar)
+                        } else { // serve from filesystem
+                            System.out.println( "Overriding location of static file serving using STATIC_LOCATION env var: " + static_location_override );
+                            staticFiles.directory = static_location_override;   // the directory where your files are located
+                            staticFiles.location = Location.EXTERNAL;           // Location.EXTERNAL (file system)
+                        }
+                        staticFiles.precompress = false;                   // if the files should be pre-compressed and cached in memory (optimization)
+                        // staticFiles.aliasCheck = null;                  // you can configure this to enable symlinks (= ContextHandler.ApproveAliases())
+                        // staticFiles.headers = Map.of(...);              // headers that will be set for the files
+                        // staticFiles.skipFileFunction = req -> false;    // you can use this to skip certain files in the dir, based on the HttpServletRequest
+                        // staticFiles.mimeTypes.add(mimeType, ext);       // you can add custom mimetypes for extensions
+                    });
+                    config.requestLogger.http( 
+                        (ctx, ms) -> { 
+                            System.out.printf( "%s%n", "=".repeat(42) );
+                            System.out.printf( "%s\t%s\t%s%nfull url: %s%n", ctx.scheme(), ctx.method().name(), ctx.path(), ctx.fullUrl() );                                
+                        } 
+                    ); 
+                } 
+            );
+                // set up static file serving. See: https://javalin.io/documentation#staticfileconfig
         
         // gson provides us a way to turn JSON into objects, and objects into JSON.
         //
@@ -232,16 +250,33 @@ public class App
 
         // our javalin app on which most operations must be performed
         Javalin app = Javalin
-                .create( 
-                    config -> {
-                        config.requestLogger.http( 
-                            (ctx, ms) -> { 
-                                System.out.printf( "%s%n", "=".repeat(42) );
-                                System.out.printf( "%s\t%s\t%s%nfull url: %s%n", ctx.scheme(), ctx.method().name(), ctx.path(), ctx.fullUrl() );                                
-                            } 
-                        ); 
-                    } 
-                );
+            .create( 
+                config -> {
+                    config.staticFiles.add(staticFiles -> {
+                        staticFiles.hostedPath = "/";                   // change to host files on a subpath, like '/assets'
+                        String static_location_override = System.getenv("STATIC_LOCATION");
+                        if (static_location_override == null) { // serve from jar; files located in src/main/resources/public
+                            staticFiles.directory = "/public";                  // the directory where your files are located
+                            staticFiles.location = Location.CLASSPATH;          // Location.CLASSPATH (jar)
+                        } else { // serve from filesystem
+                            System.out.println( "Overriding location of static file serving using STATIC_LOCATION env var: " + static_location_override );
+                            staticFiles.directory = static_location_override;   // the directory where your files are located
+                            staticFiles.location = Location.EXTERNAL;           // Location.EXTERNAL (file system)
+                        }
+                        staticFiles.precompress = false;                   // if the files should be pre-compressed and cached in memory (optimization)
+                        // staticFiles.aliasCheck = null;                  // you can configure this to enable symlinks (= ContextHandler.ApproveAliases())
+                        // staticFiles.headers = Map.of(...);              // headers that will be set for the files
+                        // staticFiles.skipFileFunction = req -> false;    // you can use this to skip certain files in the dir, based on the HttpServletRequest
+                        // staticFiles.mimeTypes.add(mimeType, ext);       // you can add custom mimetypes for extensions
+                    });
+                    config.requestLogger.http( 
+                        (ctx, ms) -> { 
+                            System.out.printf( "%s%n", "=".repeat(42) );
+                            System.out.printf( "%s\t%s\t%s%nfull url: %s%n", ctx.scheme(), ctx.method().name(), ctx.path(), ctx.fullUrl() );                                
+                        } 
+                    ); 
+                } 
+            );
         
         // gson provides us a way to turn JSON into objects, and objects into JSON.
         //
