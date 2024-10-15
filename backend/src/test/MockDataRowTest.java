@@ -22,7 +22,7 @@ public class MockDataRowTest extends TestCase{
         String message = "Test Message";
         int likes = 5;
         int id = 17;
-        MockDataRow d = new MockDataRow(id, message, likes, null); //date is set to null at the moment
+        MockDataRow d = new MockDataRow(id, message, likes); //date is set to null at the moment
 
         assertTrue(d.mMessage().equals(message));
         assertTrue(d.mLikes() == likes);
@@ -32,7 +32,7 @@ public class MockDataRowTest extends TestCase{
         String message = "Test Message";
         int likes = 200;
         int id = 0;
-        MockDataRow d = new MockDataRow(id, message, likes, null); //date is set to null at the moment
+        MockDataRow d = new MockDataRow(id, message, likes); //date is set to null at the moment
 
         assertTrue(d.mMessage().equals(message));
         assertTrue(d.mLikes() == likes);
