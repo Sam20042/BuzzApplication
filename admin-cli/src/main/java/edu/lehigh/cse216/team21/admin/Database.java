@@ -118,6 +118,61 @@ public class Database {
         }
     }
 
+    ////////////////////////// INSERT //////////////////////////
+    /**
+     * ps to insert into tbldata a new row with next auto-gen id and the two given
+     * values
+     */
+    private PreparedStatement mInsertOne;
+    /** the SQL for mInsertOne */
+    private static final String SQL_INSERT_ONE_TBLDATA = "INSERT INTO tblData" +
+            " VALUES (default, ?, ?);";
+
+    /**
+     * safely performs mInsertOne = mConnection.prepareStatement("INSERT INTO
+     * tblData VALUES (default, ?, ?)");
+     */
+    private boolean init_mInsertOne() {
+        // return true on success, false otherwise
+        try {
+            mInsertOne = mConnection.prepareStatement(SQL_INSERT_ONE_TBLDATA);
+        } catch (SQLException e) {
+            System.err.println("Error creating prepared statement: mInsertOne");
+            System.err.println("Using SQL: " + SQL_INSERT_ONE_TBLDATA);
+            e.printStackTrace();
+            this.disconnect(); // @TODO is disconnecting on exception what we want?
+            return false;
+        }
+        return true;
+    }
+
+    /**
+     * Insert a row into the database
+     * 
+     * @param subject The subject for this new row
+     * @param message The message body for this new row
+     * @return The number of rows that were inserted
+     */
+    int insertRow(String message, int likes) {
+        if (mInsertOne == null) // not yet initialized, do lazy init
+            init_mInsertOne(); // lazy init
+
+        int count = 0;
+        try {
+            System.out.println("Database operation: insertRow(String, int)");
+
+            // Set parameters for the prepared statement
+            mInsertOne.setString(1, message); // First parameter: message
+            mInsertOne.setInt(2, likes); // Second parameter: likes
+
+            // Execute the update
+            count += mInsertOne.executeUpdate();
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+        return count;
+    }
+
     ////////////////////////// DELETE //////////////////////////
     /** ps for deleting a row from tblData */
     private PreparedStatement mDeleteOne;
