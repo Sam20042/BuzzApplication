@@ -28,6 +28,7 @@ function ReactBase() {
 
 function App() {
 
+  const backendUrl = "https://team-git-gud.dokku.cse.lehigh.edu/";
 
   const ideasState = useState([
     { id: 1, title: "Idea 1", author: "Anonymous User", message: "test message 1", likes: 1 },
