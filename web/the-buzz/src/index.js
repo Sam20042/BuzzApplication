@@ -27,9 +27,9 @@ function init() {
       console.log("loading ideas...");
       for (let i = 0; i < data.mData.length; i++) {
         ideasList[i] = {};
-        ideasList[i].id = data.mData[i].mId;
-        ideasList[i].likes = data.mData[i].mLikes;
-        ideasList[i].message = data.mData[i].mMessage;
+        ideasList[i].mId = data.mData[i].mId;
+        ideasList[i].mLikes = data.mData[i].mLikes;
+        ideasList[i].mMessage = data.mData[i].mMessage;
       }
       console.log("ideas loaded!");
       console.log(data);
@@ -42,7 +42,7 @@ function init() {
   doAjax().then(console.log).catch(console.log);
 }
 
-init();
+//init();
 const root = ReactDOM.createRoot(document.getElementById('root'));
 root.render(
   <React.StrictMode>

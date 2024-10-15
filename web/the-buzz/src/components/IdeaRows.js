@@ -7,7 +7,7 @@ function IdeaRows(props) {
     return (
         <div>
             {ideas.map((idea) => (
-                <Idea key={idea.id} title={idea.title} author={idea.author} message={idea.message} likes={idea.likes} />
+                <Idea key={idea.mId} likes={idea.mLikes} message={idea.mMessage} l />
             ))}
         </div>
     )

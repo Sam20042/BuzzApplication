@@ -50,7 +50,7 @@ function CreateIdea(props) {
                     type="button"
                     onClick={() => {
                         const new_key = ideas[ideas.length - 1].id + 1;
-                        setIdeas([...ideas, { id: new_key, title: "Idea " + new_key, author: "Anonymous User", message: new_idea, likes: 666 }]);
+                        setIdeas([...ideas, { mId: new_key, mLikes: 666, mMessage: new_idea, }]);
                         console.log("updated");
                         changeInput("button");
                     }}
