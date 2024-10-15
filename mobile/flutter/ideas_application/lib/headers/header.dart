@@ -6,16 +6,16 @@ class Header extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Container(
-      height: 56,
+      height: 60,
       width: double.infinity,
-      decoration: const BoxDecoration(color: Color(0xFFD9D9D9)),
+      color: Colors.white,
       alignment: Alignment.center,
       child: const Text(
-        'Ideas Board',
+        'The Buzz',
         style: TextStyle(
           color: Colors.black,
-          fontSize: 16,
-          fontWeight: FontWeight.w700,
+          fontSize: 24,
+          fontWeight: FontWeight.bold,
         ),
       ),
     );

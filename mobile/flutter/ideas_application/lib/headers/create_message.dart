@@ -5,31 +5,48 @@ class CreateMessage extends StatelessWidget {
 
   const CreateMessage({super.key, required this.onCreateMessage});
 
-  @override
-  Widget build(BuildContext context) {
+  // Show the modal to create a new message
+  void showCreateMessageModal(BuildContext context) {
     final TextEditingController messageController = TextEditingController();
 
-    return Column(
-      children: [
-        Container(
-          padding: const EdgeInsets.symmetric(horizontal: 8.0),
-          child: TextField(
+    showDialog(
+      context: context,
+      builder: (BuildContext context) {
+        return AlertDialog(
+          title: const Text('Create a New Idea'),
+          content: TextField(
             controller: messageController,
             decoration: const InputDecoration(
-              hintText: 'Enter message',
+              hintText: 'What\'s your thoughts?',
             ),
           ),
-        ),
-        ElevatedButton(
-          onPressed: () {
-            if (messageController.text.isNotEmpty) {
-              onCreateMessage(messageController.text);
-              messageController.clear(); // Clear input field
-            }
-          },
-          child: const Text('Create Message'),
-        ),
-      ],
+          actions: [
+            TextButton(
+              onPressed: () {
+                Navigator.of(context).pop(); // Close dialog
+              },
+              child: const Text('Cancel Idea'),
+            ),
+            ElevatedButton(
+              onPressed: () {
+                if (messageController.text.isNotEmpty) {
+                  onCreateMessage(messageController.text);
+                  Navigator.of(context).pop(); // Close after submission
+                }
+              },
+              child: const Text('Submit Idea'),
+            ),
+          ],
+        );
+      },
+    );
+  }
+
+  @override
+  Widget build(BuildContext context) {
+    return ElevatedButton(
+      onPressed: () => showCreateMessageModal(context),
+      child: const Text('Create Idea'),
     );
   }
 }
