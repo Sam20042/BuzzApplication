@@ -50,7 +50,7 @@ public class MockDataStore {
         // NB: we can safely assume that id is greater than the largest index in 
         //     mRows, and thus we can use the index-based add() method
         int id = mCounter++;
-        mRows.add(id, new MockDataRow(id, message, likes, null) );
+        mRows.add(id, new MockDataRow(id, message, likes) );
         return id;
     }
 
@@ -102,7 +102,7 @@ public class MockDataStore {
         }
         // Retrieve, update, and then return the MockDataRow
         MockDataRow rowOrig = mRows.get(id);
-        MockDataRow rowUpdated = new MockDataRow(rowOrig.mId(), message, likes, rowOrig.mCreated());
+        MockDataRow rowUpdated = new MockDataRow(rowOrig.mId(), message, likes);
         mRows.set(id, rowUpdated);
         return mRows.get(id);
     }

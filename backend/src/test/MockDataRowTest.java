@@ -27,7 +27,6 @@ public class MockDataRowTest extends TestCase{
         assertTrue(d.mMessage().equals(message));
         assertTrue(d.mLikes() == likes);
         assertTrue(d.mId() == id);
-        assertFalse(d.mCreated() == null); // this can help catch subtle bugs!
     }
     public void testConstructor2(){
         String message = "Test Message";
@@ -38,6 +37,5 @@ public class MockDataRowTest extends TestCase{
         assertTrue(d.mMessage().equals(message));
         assertTrue(d.mLikes() == likes);
         assertTrue(d.mId() == id);
-        assertFalse(d.mCreated() == null); // this can help catch subtle bugs!
     }
 }
