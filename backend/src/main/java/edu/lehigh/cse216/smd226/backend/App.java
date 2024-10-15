@@ -364,7 +364,25 @@ public class App
             
             ctx.result( gson.toJson( resp ) ); // return JSON representation of response
         } );
+        app.get( "/messages/{id}/likes", ctx -> {
+            // NB: the {} syntax "/messages/{id}" does not allow slashes ('/') as part of the parameter
+            // NB: the <> syntax "/messages/<id>" allows slashes ('/') as part of the parameter
+            int idx = Integer.parseInt( ctx.pathParam("id") );
+            
+            // NB: even on error, we return 200, but with a JSON object that describes the error.
+            ctx.status( 200 ); // status 200 OK
+            ctx.contentType( "application/json" ); // MIME type of JSON
 
+            Database.RowData data = db.selectOne(idx);
+            StructuredResponse resp = null;
+            if (data == null) { // row not found, so return an error response
+                resp = new StructuredResponse("error", "Data with row id " + idx + " not found", null);
+            } else { // we found it, so just return the data
+                resp = new StructuredResponse("ok", null, data);
+            }
+            
+            ctx.result( gson.toJson( resp ) ); // return JSON representation of response
+        } );
         // POST route for adding a new element to the MockDataStore.  This will read
         // JSON from the body of the request, turn it into a SimpleRequest 
         // object, extract the title and message, insert them, and return the 
