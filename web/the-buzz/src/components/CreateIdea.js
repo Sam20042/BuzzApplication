@@ -43,7 +43,7 @@ function CreateIdea(props) {
                     cols="5"
                     onChange={handleChange}
                     placeholder="What's your thoughts?"
-                    maxlength="512"
+                    maxLength="512"
                 />
                 <button
                     className="submit-idea-button"
