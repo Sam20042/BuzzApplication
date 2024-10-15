@@ -3,11 +3,13 @@ import 'package:flutter/material.dart';
 class MessageItem extends StatefulWidget {
   final String title;
   final int initialLikes;
+  final Function(int) onLikeToggle;
 
   const MessageItem({
     super.key,
     required this.title,
     required this.initialLikes,
+    required this.onLikeToggle,
   });
 
   @override
@@ -21,19 +23,20 @@ class _MessageItemState extends State<MessageItem> {
   @override
   void initState() {
     super.initState();
-    likeCount = widget.initialLikes; // Initialize with the provided likes
+    likeCount = widget.initialLikes;
   }
 
-  // Toggle the like state and update the like counter
   void toggleLike() {
     setState(() {
       if (isLiked) {
-        likeCount--; // Decrement the like count
+        likeCount--;
       } else {
-        likeCount++; // Increment the like count
+        likeCount++;
       }
-      isLiked = !isLiked; // Toggle the like state
+      isLiked = !isLiked;
     });
+
+    widget.onLikeToggle(likeCount);
   }
 
   @override
@@ -53,19 +56,11 @@ class _MessageItemState extends State<MessageItem> {
           IconButton(
             icon: Icon(
               Icons.thumb_up_alt_outlined,
-              color: isLiked ? Colors.green : Colors.black, // Dynamic color
+              color: isLiked ? Colors.green : Colors.black,
             ),
-            onPressed: toggleLike, // Toggle the like state
+            onPressed: toggleLike,
           ),
-          const SizedBox(width: 4), // Spacer between icon and number
-          Text(
-            '$likeCount', // Display the dynamic like count
-            style: const TextStyle(
-              fontSize: 15,
-              fontWeight: FontWeight.w400,
-              color: Colors.black,
-            ),
-          ),
+          Text('$likeCount'),
         ],
       ),
     );

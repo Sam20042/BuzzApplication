@@ -7,26 +7,24 @@ class CreateMessage extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    final TextEditingController titleController = TextEditingController();
+    final TextEditingController messageController = TextEditingController();
 
     return Column(
       children: [
-        // Input Field for Message Title
         Container(
           padding: const EdgeInsets.symmetric(horizontal: 8.0),
           child: TextField(
-            controller: titleController,
+            controller: messageController,
             decoration: const InputDecoration(
-              hintText: 'Enter message title',
+              hintText: 'Enter message',
             ),
           ),
         ),
-        // Create Message Button
         ElevatedButton(
           onPressed: () {
-            if (titleController.text.isNotEmpty) {
-              onCreateMessage(titleController.text);
-              titleController.clear(); // Clear input after message creation
+            if (messageController.text.isNotEmpty) {
+              onCreateMessage(messageController.text);
+              messageController.clear(); // Clear input field
             }
           },
           child: const Text('Create Message'),
