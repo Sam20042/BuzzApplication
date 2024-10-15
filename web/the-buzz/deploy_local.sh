@@ -4,14 +4,17 @@
 # all dependencies are up-to-date, and copying all necessary files into a
 # local web deploy directory, and starting a web server
 
-# This is the resource folder we will use as the web root
-TARGETFOLDER=./target
+# This is the resource folder where maven expects to find our files
+TARGETFOLDER=../../backend/src/main/resources
+
+# This is the folder that we used when configuring Javalin in Javalin.create()
+WEBFOLDERNAME=public
 
 # step 1: make sure we have someplace to put everything.  We will delete the
-#         old folder, and then make it from scratch
-echo "Deleting and recreating $TARGETFOLDER"
+#         old folder tree, and then make it from scratch
+echo "deleting $TARGETFOLDER and creating an empty $TARGETFOLDER/$WEBFOLDERNAME"
 rm -rf $TARGETFOLDER
-mkdir $TARGETFOLDER
+mkdir -p $TARGETFOLDER/$WEBFOLDERNAME
 
 # step 2: update our npm dependencies
 echo "Updating node dependencies"
