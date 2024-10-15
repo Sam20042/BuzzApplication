@@ -29,4 +29,15 @@ public class MockDataRowTest extends TestCase{
         assertTrue(d.mId() == id);
         assertFalse(d.mCreated() == null); // this can help catch subtle bugs!
     }
+    public void testConstructor2(){
+        String message = "Test Message";
+        int likes = 200;
+        int id = 0;
+        MockDataRow d = new MockDataRow(id, message, likes, null); //date is set to null at the moment
+
+        assertTrue(d.mMessage().equals(message));
+        assertTrue(d.mLikes() == likes);
+        assertTrue(d.mId() == id);
+        assertFalse(d.mCreated() == null); // this can help catch subtle bugs!
+    }
 }
