@@ -22,6 +22,7 @@ public class App
      /** Not particularly elegant, but we can activate different mains by commenting/uncommenting */
         /** The default port our webserver uses. We set it to Javalin's default, 8080 */
     public static final int DEFAULT_PORT_WEBSERVER = 8080;
+    public static int secondary_Port = 5412;
 
     /**
     * Safely gets integer value from named env var if it exists, otherwise returns default
