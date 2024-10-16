@@ -12,26 +12,7 @@ import java.util.ArrayList;
 public class App {
 
     public static void main(String[] argv) {
-        // simpleManualTests(argv);
         mainCliLoop(argv);
-    }
-
-    /**
-     * Reads arguments from the environment and then uses those
-     * arguments to connect to the database. Either DATABASE_URL should be set,
-     * or the values of four other variables POSTGRES_{IP, PORT, USER, PASS,
-     * DBNAME}.
-     */
-    public static void simpleManualTests(String[] argv) {
-        /* holds connection to the database created from environment variables */
-        Database db = Database.getDatabase();
-
-        db.dropTable();
-        db.createTable();
-        db.dropTable();
-
-        if (db != null)
-            db.disconnect();
     }
 
     /**
@@ -94,10 +75,14 @@ public class App {
                     break;
                 case 'f':
                 case 'F':
-                    db.insertRow("Brownie Bake Fundraiser", 50);
+                    db.insertRow("Brownie Bake Fundraiser", 20);
+                    db.insertRow("Petition for new chairs for the devlopment department", 44);
                     db.insertRow("Recruit Interns from Lehigh", 89);
+                    db.insertRow(
+                            "Builds a personal journal app that tracks moods with emojis, daily word counts, and trends over time. It can suggest quotes based on the user's mood, and offer monthly summaries. Users can unlock badges for streaks, and everything stays encrypted to ensure privacy",
+                            500);
                     db.insertRow("We should combine Birthday Celebrations per month to save money", 2);
-                    System.out.println(3 + " rows added");
+                    System.out.println(5 + " rows added");
                     break;
             }
             if (action == 'q' || action == 'Q') {
