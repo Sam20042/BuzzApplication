@@ -22,20 +22,22 @@ public class MockDataRowTest extends TestCase{
         String message = "Test Message";
         int likes = 5;
         int id = 17;
-        MockDataRow d = new MockDataRow(id, message, likes); //date is set to null at the moment
-
+        MockDataRow d = new MockDataRow(id, message, likes); //date is set to null at the moment, create two mockdatarow objects
+        MockDataRow dd = new MockDataRow("Test Message", 5, 17);
         assertTrue(d.mMessage().equals(message));
         assertTrue(d.mLikes() == likes);
         assertTrue(d.mId() == id);
+        assertTrue(d == dd);
     }
     public void testConstructor2(){
         String message = "Test Message";
         int likes = 200;
         int id = 0;
         MockDataRow d = new MockDataRow(id, message, likes); //date is set to null at the moment
-
+        MockDataRow dd = new MockDataRow("Test Message", 200, 0);
         assertTrue(d.mMessage().equals(message));
         assertTrue(d.mLikes() == likes);
         assertTrue(d.mId() == id);
+        assertTrue(d == dd);
     }
 }
