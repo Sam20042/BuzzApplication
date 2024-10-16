@@ -1,0 +1,20 @@
+// This is a basic Flutter widget test.
+//
+// To perform an interaction with a widget in your test, use the WidgetTester
+// utility in the flutter_test package. For example, you can send tap and scroll
+// gestures. You can also use WidgetTester to find child widgets in the widget
+// tree, read text, and verify that the values of widget properties are correct.
+
+import 'package:flutter/material.dart';
+import 'package:flutter_test/flutter_test.dart';
+
+import 'package:ideas_application/main.dart';
+
+void main() {
+  testWidgets('Verify if Create Idea button exists', (WidgetTester tester) async {
+    await tester.pumpWidget(const FigmaToCodeApp());
+
+    // Check if Create Idea button is present
+    expect(find.text('Create Idea'), findsOneWidget);
+  });
+}
