@@ -1,14 +1,14 @@
 import React from 'react';
 import ReactDOM from 'react-dom/client';
 import './index.css';
-import { ReactBase, App } from './App';
+import App from './App';
 import reportWebVitals from './reportWebVitals';
 
 var ideasList = [];
 
 function init() {
   const doAjax = async () => {
-    await fetch(`http://localhost:8080/messages`, {
+    await fetch(`/messages`, {
       method: 'GET',
       headers: {
         'Content-type': 'application/json; charset=UTF-8'

@@ -38,7 +38,7 @@ function App(props) {
 
   //console.log("making ideas");
 
-  //const ideasState = useState(props.ideas);
+  // const ideasState = useState(props.ideas);
 
   const [ideas, setIdeas] = ideasState;
 
@@ -59,5 +59,5 @@ function App(props) {
   );
 }
 
-export { ReactBase, App };
+export default App;
 
