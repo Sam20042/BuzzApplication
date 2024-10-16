@@ -1,4 +1,5 @@
 // api_service.dart
+/*
 import 'dart:convert';
 import 'package:http/http.dart' as http;
 
@@ -53,12 +54,5 @@ class ApiService {
       throw Exception('Failed to update likes');
     }
   }
-
-  // DELETE a message by ID
-  Future<void> deleteMessage(int id) async {
-    final response = await http.delete(Uri.parse('$baseUrl/$id'));
-    if (response.statusCode != 200) {
-      throw Exception('Failed to delete message');
-    }
-  }
 }
+*/

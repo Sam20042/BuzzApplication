@@ -24,6 +24,7 @@ class _MessageItemState extends State<MessageItem> {
     likeCount = widget.initialLikes; // Initialize with initial like count
   }
 
+  
   // Toggle like and update counter
   void toggleLike() {
     setState(() {
