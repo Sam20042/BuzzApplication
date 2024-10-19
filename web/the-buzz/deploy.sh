@@ -17,15 +17,21 @@ rm -rf $TARGETFOLDER
 mkdir -p $TARGETFOLDER/$WEBFOLDERNAME
 
 # step 2: update our npm dependencies
-echo "Updating node dependencies"
-npm update
+#echo "Updating node dependencies"
+#npm update
+
+# step 3: build the react app
+echo "Building React app"
+npm run build
 
 # step 3: copy static html, css, and JavaScript files
-echo "Copying static html, css, and js files"
-cp -r src $TARGETFOLDER
-cp -r public $TARGETFOLDER
+# echo "Copying static html, css, and js files"
+# cp -r src $TARGETFOLDER
+# cp -r public $TARGETFOLDER
+echo "Copying static build files"
+cp -r ./build $TARGETFOLDER/$WEBFOLDERNAME
 
 # step final: launch the server.  Be sure to disable caching
 # (Note: we don't currently use -s for silent operation)
-echo "Starting local webserver at $TARGETFOLDER"
-npm start $TARGETFOLDER
+# echo "Starting local webserver at $TARGETFOLDER/$WEBFOLDERNAME"
+# npm start $TARGETFOLDER/$WEBFOLDERNAME
