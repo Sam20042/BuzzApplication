@@ -6,6 +6,8 @@ import reportWebVitals from './reportWebVitals';
 
 var ideasList = [];
 
+init();
+
 function init() {
   const doAjax = async () => {
     await fetch(`/messages`, {
@@ -24,14 +26,8 @@ function init() {
       }
       return Promise.reject(response);
     }).then((data) => {
-      console.log("loading ideas...");
-      for (let i = 0; i < data.mData.length; i++) {
-        ideasList[i] = {};
-        ideasList[i].mId = data.mData[i].mId;
-        ideasList[i].mLikes = data.mData[i].mLikes;
-        ideasList[i].mMessage = data.mData[i].mMessage;
-      }
-      console.log("ideas loaded!");
+      ideasList = loadIdeas(data);
+      createApp();
       console.log(data);
     }).catch((error) => {
       console.warn('Something went wrong.', error);
@@ -42,13 +38,27 @@ function init() {
   doAjax().then(console.log).catch(console.log);
 }
 
-//init();
-const root = ReactDOM.createRoot(document.getElementById('root'));
-root.render(
-  <React.StrictMode>
-    <App ideas={ideasList} />
-  </React.StrictMode>
-);
+function loadIdeas(data) {
+  let ideas = []
+  console.log("loading ideas...");
+  for (let i = 0; i < data.mData.length; i++) {
+    ideas[i] = {};
+    ideas[i].mId = data.mData[i].mId;
+    ideas[i].mLikes = data.mData[i].mLikes;
+    ideas[i].mMessage = data.mData[i].mMessage;
+  }
+  console.log("ideas loaded!");
+  return ideas;
+}
+function createApp() {
+  const root = ReactDOM.createRoot(document.getElementById('root'));
+  root.render(
+    <React.StrictMode>
+      <App ideas={ideasList} />
+    </React.StrictMode>
+  );
+}
+
 
 // If you want to start measuring performance in your app, pass a function
 // to log results (for example: reportWebVitals(console.log))

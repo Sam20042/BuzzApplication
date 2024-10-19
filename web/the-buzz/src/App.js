@@ -30,15 +30,15 @@ function App(props) {
 
   const backendUrl = "https://team-git-gud.dokku.cse.lehigh.edu/";
 
-  const ideasState = useState([
-    { mId: 1, mLikes: 1, mMessage: "test message 1" },
-    { mId: 2, mLikes: 10, mMessage: "test message 2" },
-    { mId: 3, mLikes: 100, mMessage: "test message 3" },
-  ]);
+  // const ideasState = useState([
+  //   { mId: 1, mLikes: 1, mMessage: "test message 1" },
+  //   { mId: 2, mLikes: 10, mMessage: "test message 2" },
+  //   { mId: 3, mLikes: 100, mMessage: "test message 3" },
+  // ]);
 
   //console.log("making ideas");
 
-  // const ideasState = useState(props.ideas);
+  const ideasState = useState(props.ideas);
 
   const [ideas, setIdeas] = ideasState;
 
