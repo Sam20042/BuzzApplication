@@ -293,7 +293,7 @@ public class Database {
     private PreparedStatement mSelectAll;
     /** the SQL for mSelectAll */
     private static final String SQL_SELECT_ALL_TBLDATA = 
-            "SELECT id, likes" + 
+            "SELECT id, likes, message" + 
             " FROM tblData;";
 
     /** safely performs mSelectAll = mConnection.prepareStatement("SELECT id, likes FROM tblData"); */
@@ -325,7 +325,8 @@ public class Database {
             while (rs.next()) {
                 int id = rs.getInt("id");
                 int likes = rs.getInt("likes");
-                RowData data = new RowData(id, likes, null);
+                String message = rs.getString("message");
+                RowData data = new RowData(id, likes, message);
                 res.add(data);
             }
             rs.close();  // remember to close the result set
