@@ -46,7 +46,7 @@ function App(props) {
 
   return (
     <>
-      <div className="App">
+      <div className="Banner">
         <h1>The Buzz</h1>
       </div>
       <div>
