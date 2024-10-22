@@ -27,7 +27,16 @@ public class DatabaseTest
     }
 
     /**
-     * Rigourous Test :-)
+     * Tests the admin client by dropping and creating a table, then inserting a
+     * test of a row with message: Message likes: 40. Then it checks if selecting
+     * row 1 will return the correct
+     * ideas. Then we test deleting a row returns 1 and trying again doesn't work
+     * because there is nothing left
+     *
+     * Note** you will need to pass the enviorment variables every time you mvn
+     * package and mvn exec:java because tests need those variables
+     * 
+     * @returns True when the tests all work and failed when they don't work
      */
     public void testDatabase_selecting_deleting() {
         Database db = Database.getDatabase();
