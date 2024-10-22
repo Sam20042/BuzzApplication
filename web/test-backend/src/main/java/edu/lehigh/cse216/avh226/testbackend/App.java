@@ -129,6 +129,52 @@ public class App {
             }
             ctx.result(gson.toJson(resp)); // return JSON representation of response
         });
+        app.put("/messages/{id}/like/increment", ctx -> {
+            // If we can't get an ID or can't parse the JSON, javalin sends a status 500
+            int idx = Integer.parseInt(ctx.pathParam("id"));
+
+            // NB: even on error, we return 200, but with a JSON object that describes the
+            // error.
+            ctx.status(200); // status 200 OK
+            ctx.contentType("application/json"); // MIME type of JSON
+            StructuredResponse resp = null;
+
+            // NB: update entry in MockDataStore; updateOne checks for null title and
+            // message and invalid ids
+            Database.RowData old_msg = test_msgs.get(idx - 1);
+            test_msgs.set(idx - 1, new Database.RowData(idx, old_msg.mLikes() + 1, old_msg.mMessage()));
+            // int result = db.updateOne(idx, req.mLikes(), req.mMessage());
+            int result = 1;
+            if (result == -1) {
+                resp = new StructuredResponse("error", "unable to update row " + idx, null);
+            } else {
+                resp = new StructuredResponse("ok", null, test_msgs.get(idx - 1));
+            }
+            ctx.result(gson.toJson(resp)); // return JSON representation of response
+        });
+        app.put("/messages/{id}/like/decrement", ctx -> {
+            // If we can't get an ID or can't parse the JSON, javalin sends a status 500
+            int idx = Integer.parseInt(ctx.pathParam("id"));
+
+            // NB: even on error, we return 200, but with a JSON object that describes the
+            // error.
+            ctx.status(200); // status 200 OK
+            ctx.contentType("application/json"); // MIME type of JSON
+            StructuredResponse resp = null;
+
+            // NB: update entry in MockDataStore; updateOne checks for null title and
+            // message and invalid ids
+            Database.RowData old_msg = test_msgs.get(idx - 1);
+            test_msgs.set(idx - 1, new Database.RowData(idx, old_msg.mLikes() - 1, old_msg.mMessage()));
+            // int result = db.updateOne(idx, req.mLikes(), req.mMessage());
+            int result = 1;
+            if (result == -1) {
+                resp = new StructuredResponse("error", "unable to update row " + idx, null);
+            } else {
+                resp = new StructuredResponse("ok", null, test_msgs.get(idx - 1));
+            }
+            ctx.result(gson.toJson(resp)); // return JSON representation of response
+        });
 
         // DELETE route for removing a row from the MockDataStore
         app.delete("/messages/{id}", ctx -> {
@@ -184,7 +230,7 @@ public class App {
 
             ctx.result(gson.toJson(resp)); // return JSON representation of response
         });
-        app.get("/messages/{id}/likes", ctx -> {
+        app.get("/messages/{id}/like", ctx -> {
             // NB: the {} syntax "/messages/{id}" does not allow slashes ('/') as part of
             // the parameter
             // NB: the <> syntax "/messages/<id>" allows slashes ('/') as part of the
