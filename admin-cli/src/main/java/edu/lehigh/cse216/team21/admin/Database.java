@@ -24,6 +24,11 @@ public class Database {
      * to encourage users to think of RowData as being anything other than an
      * abstract representation of a row of the database. RowData and the
      * Database are tightly coupled: if one changes, the other should too.
+     * 
+     * @param mId      Id of idea
+     * @param mMessage message of the idea
+     * @param mLikes   number of likes gained by idea
+     * 
      */
     public static record RowData(int mId, String mMessage, int mLikes) {
     }
@@ -39,15 +44,15 @@ public class Database {
             " id SERIAL PRIMARY KEY," +
             " message VARCHAR(512) NOT NULL," +
             " likes INT DEFAULT 0 NOT NULL)";
-    // " likes INT DEFAULT 0 NOT NULL)";
-    // NB: we can easily get ourselves in trouble here by typing the
-    // SQL incorrectly. We really should have things like "tblData"
-    // as constants, and then build the strings for the statements
-    // from those constants.
 
     /**
-     * safely performs mCreateTable =
+     * init_mCreateTable is a way to safely performs mCreateTable =
      * mConnection.prepareStatement(SQL_CREATE_TABLE);
+     * 
+     * We make this for it to be called in the createTable function that will be
+     * called in App.java
+     * 
+     * @return true on sucess and false/error if failure
      */
     private boolean init_mCreateTable() {
         // return true on success, false otherwise
@@ -88,6 +93,8 @@ public class Database {
     /**
      * safely performs mDropTable = mConnection.prepareStatement("DROP TABLE
      * tblData");
+     * 
+     * @return true on sucess and false/error if failure
      */
     private boolean init_mDropTable() {
         // return true on success, false otherwise
@@ -131,6 +138,8 @@ public class Database {
     /**
      * safely performs mInsertOne = mConnection.prepareStatement("INSERT INTO
      * tblData VALUES (default, ?, ?)");
+     * 
+     * @return true on sucess and false/error if failure
      */
     private boolean init_mInsertOne() {
         // return true on success, false otherwise
@@ -149,8 +158,8 @@ public class Database {
     /**
      * Insert a row into the database
      * 
-     * @param subject The subject for this new row
      * @param message The message body for this new row
+     * @param likes   the number of likes on idea
      * @return The number of rows that were inserted
      */
     int insertRow(String message, int likes) {
@@ -182,6 +191,8 @@ public class Database {
 
     /**
      * safely performs mDeleteOne = mConnection.prepareStatement(SQL_DELETE_ONE);
+     * 
+     * @return true on sucess and false/error if failure
      */
     private boolean init_mDeleteOne() {
         // return true on success, false otherwise
@@ -228,6 +239,8 @@ public class Database {
     /**
      * safely performs mSelectOne = mConnection.prepareStatement("SELECT * from
      * tblData WHERE id=?");
+     * 
+     * @return true on sucess and false/error if failure
      */
     private boolean init_mSelectOne() {
         // return true on success, false otherwise
@@ -246,7 +259,7 @@ public class Database {
     /**
      * Get all data for a specific row, by ID
      * 
-     * @param id The id of the row being requested
+     * @param row_id The id of the row being requested
      * @return The data for the requested row, or null if the ID was invalid
      */
     RowData selectOne(int row_id) {

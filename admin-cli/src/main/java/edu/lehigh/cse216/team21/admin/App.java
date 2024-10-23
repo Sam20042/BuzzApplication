@@ -8,9 +8,14 @@ import java.util.ArrayList;
 /**
  * App is our basic admin app. For now, all it does is connect to the database
  * and then disconnect
+ *
+ * Default constructor. (For invocation by subclass
+ * constructors, typically implicit.)
  */
 public class App {
-
+    /*
+     * Main of the App that calls mainCliLoop
+     */
     public static void main(String[] argv) {
         mainCliLoop(argv);
     }
