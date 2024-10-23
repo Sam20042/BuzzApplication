@@ -16,5 +16,6 @@ To look at the logs of the dokku app type ssh -i ~/.ssh/id_ed25519 -t dokku@dokk
 
 Lastly to turn off the app (which should be done after every use to prevent problems) type in the command ssh -i ~/.ssh/id_ed25519 -t dokku@dokku.cse.lehigh.edu 'ps:stop team-git-gud'.
 
+Link to html: cse216_fa24_team_21/backend/target/reports/apidocs/edu/lehigh/cse216/smd226/backend/package-summary.html
  
 
