@@ -1,4 +1,4 @@
-package edu.lehigh.cse216.smd226.backend;
+package edu.lehigh.cse216.avh226.testbackend;
 
 // these imports allow us to connect to a database
 import java.sql.Connection;
