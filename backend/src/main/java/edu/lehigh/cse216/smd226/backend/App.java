@@ -21,8 +21,8 @@ public class App
     public static Database db;
      /** Not particularly elegant, but we can activate different mains by commenting/uncommenting */
         /** The default port our webserver uses. We set it to Javalin's default, 8080 */
-    public static final int DEFAULT_PORT_WEBSERVER = 8080;
-    public static int secondary_Port = 5412;
+    public static final int DEFAULT_PORT_WEBSERVER = 8080; //this should be a string
+    //public static String secondary_Port = 5412;
 
     /**
     * Safely gets integer value from named env var if it exists, otherwise returns default
@@ -409,6 +409,44 @@ public class App
             }
             ctx.result( gson.toJson( resp ) ); // return JSON representation of response
         });
+        app.put( "/messages/{id}/likes/increment", ctx -> {
+            // NB: the {} syntax "/messages/{id}" does not allow slashes ('/') as part of the parameter
+            // NB: the <> syntax "/messages/<id>" allows slashes ('/') as part of the parameter
+            int idx = Integer.parseInt( ctx.pathParam("id") );
+            
+            // NB: even on error, we return 200, but with a JSON object that describes the error.
+            ctx.status( 200 ); // status 200 OK
+            ctx.contentType( "application/json" ); // MIME type of JSON
+            SimpleRequest req = gson.fromJson(ctx.body(), SimpleRequest.class);
+            Database.RowData data = db.selectOne(idx);
+            StructuredResponse resp = null;
+            if (data == null) { // row not found, so return an error response
+                resp = new StructuredResponse("error", "Data with row id " + idx + " not found", null);
+            } else { // we found it, so just return the data
+                resp = new StructuredResponse("ok", null, data);
+            }
+            db.updateOne(idx,req.mLikes() + 1, req.mMessage());
+            ctx.result( gson.toJson( resp ) ); // return JSON representation of response
+        } );
+        app.put( "/messages/{id}/likes/decrement", ctx -> {
+            // NB: the {} syntax "/messages/{id}" does not allow slashes ('/') as part of the parameter
+            // NB: the <> syntax "/messages/<id>" allows slashes ('/') as part of the parameter
+            int idx = Integer.parseInt( ctx.pathParam("id") );
+            
+            // NB: even on error, we return 200, but with a JSON object that describes the error.
+            ctx.status( 200 ); // status 200 OK
+            ctx.contentType( "application/json" ); // MIME type of JSON
+            SimpleRequest req = gson.fromJson(ctx.body(), SimpleRequest.class);
+            Database.RowData data = db.selectOne(idx);
+            StructuredResponse resp = null;
+            if (data == null) { // row not found, so return an error response
+                resp = new StructuredResponse("error", "Data with row id " + idx + " not found", null);
+            } else { // we found it, so just return the data
+                resp = new StructuredResponse("ok", null, data);
+            }
+            db.updateOne(idx,req.mLikes() - 1, req.mMessage());
+            ctx.result( gson.toJson( resp ) ); // return JSON representation of response
+        } );
         // don't forget: nothing happens until we `start` the server
         app.start(getIntFromEnv("PORT", DEFAULT_PORT_WEBSERVER));
     }
