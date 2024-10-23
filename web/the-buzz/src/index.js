@@ -8,6 +8,9 @@ var ideasList = [];
 
 init();
 
+/**
+ * Prepares the page for creation by sending a GET request to /messages to get the list of ideas to display from the backend
+ */
 function init() {
   const doAjax = async () => {
     await fetch(`/messages`, {
@@ -38,6 +41,11 @@ function init() {
   doAjax().then(console.log).catch(console.log);
 }
 
+/**
+ * Loads the list of ideas received from the backend into an array
+ * @param {*} data The list of ideas to display from the backend
+ * @returns The list of ideas to display, prepared and formatted for the frontend
+ */
 function loadIdeas(data) {
   let ideas = []
   console.log("loading ideas...");
@@ -50,6 +58,10 @@ function loadIdeas(data) {
   console.log("ideas loaded!");
   return ideas;
 }
+
+/**
+ * Creates the React root and renders the App component
+ */
 function createApp() {
   const root = ReactDOM.createRoot(document.getElementById('root'));
   root.render(

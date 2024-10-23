@@ -4,28 +4,32 @@ import './App.css';
 import Ideas from './components/IdeaRows.js';
 import CreateIdea from './components/CreateIdea.js';
 
-function ReactBase() {
-  return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
-  );
-}
+// function ReactBase() {
+//   return (
+//     <div className="App">
+//       <header className="App-header">
+//         <img src={logo} className="App-logo" alt="logo" />
+//         <p>
+//           Edit <code>src/App.js</code> and save to reload.
+//         </p>
+//         <a
+//           className="App-link"
+//           href="https://reactjs.org"
+//           target="_blank"
+//           rel="noopener noreferrer"
+//         >
+//           Learn React
+//         </a>
+//       </header>
+//     </div>
+//   );
+// }
 
-
+/**
+ * The app component containing all other components (a CreateIdea component and an IdeaRows component)
+ * @param {*} props All properties and objects to send to the components of the app. In this case, the list of ideas/messages to display are included 
+ * @returns the App component, containing a CreateIdea component, followed by an IdeaRows component below it
+ */
 function App(props) {
 
   const backendUrl = "https://team-git-gud.dokku.cse.lehigh.edu/";
