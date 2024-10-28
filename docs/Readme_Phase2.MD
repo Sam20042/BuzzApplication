@@ -45,13 +45,13 @@ Test 4: Profile Editing (Manual)
 Manually test that users can edit their profile information, ensuring updates are reflected correctly.
 
 Test 5: Profile Viewing (Manual)
-Verify that users can view the profiles of any user. Make sure that all information is shown and is correct, with the exception of gender identity and sexual orientation, which should not be shown (unless the profile being viewed is the userÕs own).
+Verify that users can view the profiles of any user. Make sure that all information is shown and is correct, with the exception of gender identity and sexual orientation, which should not be shown (unless the profile being viewed is the userï¿½s own).
 3. Updated Unit Test Descriptions for the Admin Role:
 Test 1: createTables()
 Description: Tests that the function correctly sets up the new tables required for users, votes, comments, and profiles, ensuring compatibility with new features.
 
 Test 2: invalidateUser()
-Description: Verifies that a userÕs account can be set to an "inactive" state, preventing login attempts while maintaining their data in the database.
+Description: Verifies that a userï¿½s account can be set to an "inactive" state, preventing login attempts while maintaining their data in the database.
 
 Test 3: invalidateIdea()
 Description: Ensures that invalidated ideas do not appear in any user queries but remain in the database for administrative purposes.
@@ -64,10 +64,10 @@ Description: Ensures that invalidated ideas do not appear in any user queries bu
 https://lucid.app/lucidchart/516f5158-a2f9-45bb-adec-38fc204c9524/edit?invitationId=inv_94fccc9b-75ff-4b9c-a1c3-74b119f140b9&page=0_0#
 ## Updated mock web/mobile UI drawings
 
-## Updated state machine drawing for user personaÕs interaction with the application
-
+## Updated state machine drawing for user personaï¿½s interaction with the application
+![System Architecture Diagram](/docs/imgs/system_architecture_diagram.jpeg)
 ## NEW state machine drawing from perspective of an idea object (update, add comment, edit comment, like, repeated like, dislike, repeated dislike, delete comment)
-
+![System Architecture Diagram](/docs/imgs/system_architecture_diagram.jpeg)
 ## Updated listing of routes, their purpose, and format of passed objects
 
 
