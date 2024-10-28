@@ -2,59 +2,23 @@
 
 ## User/Admin stories:
 
-1. Updated User Stories for Admin and "Authenticated User" Personas:
-Admin User Stories:
-As an admin, I want to create and manage the new tables (users, profiles, votes, comments) to support authentication and user-related features, ensuring a smooth user experience.
+## Admin User Stories:
+- **As an admin,** I want to create and manage the new tables (users, profiles, votes, comments) to support authentication and user-related features, ensuring a smooth user experience.
 
-As an admin, I want to invalidate ideas, so that inappropriate content is not displayed on the app.
+- **As an admin,** I want to invalidate ideas, so that inappropriate content is not displayed on the app.
 
-As an admin, I want to invalidate user accounts, so that users who violate app guidelines are prevented from logging in.
-Authenticated User Stories:
-As an authenticated user, I want to log in easily and quickly using Google OAuth, so I can access the app securely without creating a separate account.
+- **As an admin,** I want to invalidate user accounts, so that users who violate app guidelines are prevented from logging in.
 
-As an authenticated user, I want to upvote or downvote posts, so that I can express my preferences regarding content.
+## Authenticated User Stories:
+- **As an authenticated user,** I want to log in easily and quickly using Google OAuth, so I can access the app securely without creating a separate account.
 
-As an authenticated user, I want to leave text-based comments on posts, so that I can participate in discussions.
+- **As an authenticated user,** I want to upvote or downvote posts, so that I can express my preferences regarding content.
 
-As an authenticated user, I want to access and edit my profile, so that my information stays current.
+- **As an authenticated user,** I want to leave text-based comments on posts, so that I can participate in discussions.
 
-As an authenticated user, I want to be able to see the profiles of the users who create posts or comments.
+- **As an authenticated user,** I want to access and edit my profile, so that my information stays current.
 
-
-2. Updated User Story-Based Tests:
-Admin User Story-Based Tests:
-Test 1: Manage Tables (Manual)
-Verify that the admin can create and manage new tables, ensuring they align with the new features for authentication and user profiles.
-
-Test 2: Invalidate Ideas (Manual)
-Check that when an idea is invalidated, it no longer appears in user queries and ensure this action can be reversed.
-
-Test 3: Invalidate User Accounts (Automated)
-Write a test that verifies the function correctly prevents a user from logging in after their account has been invalidated.
-Authenticated User Story-Based Tests:
-Test 1: Google OAuth Login (Manual)
-Manually test that an authenticated user can log in using their Google account, and access is restricted to users with the "lehigh.edu" domain.
-
-Test 2: Vote Functionality (Automated)
-Write tests that verify upvote and downvote actions, including changing votes and resetting to a neutral state.
-
-Test 3: Comment on Posts (Automated)
-Verify that an authenticated user can add and edit comments on posts, and that comments are stored correctly in the database.
-
-Test 4: Profile Editing (Manual)
-Manually test that users can edit their profile information, ensuring updates are reflected correctly.
-
-Test 5: Profile Viewing (Manual)
-Verify that users can view the profiles of any user. Make sure that all information is shown and is correct, with the exception of gender identity and sexual orientation, which should not be shown (unless the profile being viewed is the user�s own).
-3. Updated Unit Test Descriptions for the Admin Role:
-Test 1: createTables()
-Description: Tests that the function correctly sets up the new tables required for users, votes, comments, and profiles, ensuring compatibility with new features.
-
-Test 2: invalidateUser()
-Description: Verifies that a user�s account can be set to an "inactive" state, preventing login attempts while maintaining their data in the database.
-
-Test 3: invalidateIdea()
-Description: Ensures that invalidated ideas do not appear in any user queries but remain in the database for administrative purposes.
+- **As an authenticated user,** I want to be able to see the profiles of the users who create posts or comments.
 
 
 
