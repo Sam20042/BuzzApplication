@@ -11,31 +11,20 @@ Test the like and dislike counter by testing if the like or dislike counter goes
 
 Tests ideas for backend:
 Test whether a user can be made and data can be stored inside including an email and password.
-
-POST 'usr/signin' request with params: email, password
-
-  user = find User in database by with the email
-  
-  check to make sure the password = the param password in the database
-  
-  if you are able to get in
-  
-    set user = usr
-    
-    return user details
-    
-  else
-
-    return failure message
-  end
-  
+# POST 'usr/signin' request with params: email, password
+  #  user = find User in database by with the email
+  #  check to make sure the password = the param password in the database
+  #  if you are able to get in
+    #  set user = usr
+    #  return user details
+  #  else
+    #  return failure message
+  #  end
 End
 
 Tests ideas for Admin: 
-
 Manual Test:
 Test if command letters in menu all work and ones that aren’t specified are denied and errored out correctly
-
 Automated Tests: 
 Create a table to store ideas.
 Insert a few ideas into the table, ensuring each idea fits within a 512-character limit.
@@ -44,21 +33,15 @@ Delete one of the ideas from the table, ensuring the others remain intact and on
 Drop the entire table, ensuring that no records remain after the table is dropped.
 
 Test Ideas for Web frontend:
-
 Manual Tests:
-Test: Clicking “like” 
-when not liked:
+Test: Clicking “like” when not liked:
 Changes the color of the button (for the correct idea/message)
-
 Increases the like count by one
-
 Test: Clicking “like” when already liked:
 Changes the color of the button back to normal (for the correct idea/message)
 Decreases the like count by one
-
 Test ideas for mobile:
 Manual Test:
-
 Test: Expand/Collapse Feature
 Test the expand/collapse feature, when clicking the expand/collapse button the first time, it should reveal the text in the body of the idea. When clicked the second time, it will then hide the text.
 
@@ -67,9 +50,7 @@ Test the expand/collapse feature, when clicking the expand/collapse button the f
 [Link to System Architecture Diagram](https://lucid.app/lucidchart/516f5158-a2f9-45bb-adec-38fc204c9524/edit?viewport_loc=-279%2C-78%2C2899%2C1293%2C0_0&invitationId=inv_94fccc9b-75ff-4b9c-a1c3-74b119f140b9)
 
 ## Drawing of a mock web/mobile user interface
-![Web User Interface](/docs/imgs/frontend_web_mockup.jpg)
-![Mobile User Interface](/docs/imgs/frontend_mobile_mockup.jpg)
-[Link to UI Mockups](https://www.figma.com/design/H7GSQHK2SEG8wgoGutukaP/Message-Board---Web-%26-Mobile?node-id=0-1)
+https://www.figma.com/design/H7GSQHK2SEG8wgoGutukaP/Message-Board---Web-%26-Mobile?node-id=0-1
 
 ## Drawing of state machine for anonymous user persona’s interaction with the application
 ![State Transition Diagram](/docs/imgs/state_transition_diagram.jpeg)

@@ -18,7 +18,11 @@ This is a team repository.  It is intended for use during phase 1 and beyond.
 - Backend URL: https://supabase.com/dashboard/project/fjjpcdheojefynplupsc
 
 ## Description: 
-- This application is a cloud-hosted web system, plus a mobile app, so that employees can post short ideas (messages), and other employees can like (and remove a like from) that idea.
+- This application is a cloud-hosted web system, plus a mobile app, 
+so that employees can post short ideas (messages), and other employees 
+can like (and remove a like from) that idea. In this release, we adjusted all
+that we implemented in the implementation sprint (such as the ERD, mock drawing, etc.). Anything that 
+had not been done (well) are done in this sprint.
 
 ## Instructions on building and running locally on Dokku:
 - Set up a remote Git repository.
