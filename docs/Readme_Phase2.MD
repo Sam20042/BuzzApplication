@@ -24,6 +24,32 @@
 
 ## Updated user story-based tests (indicate manual vs. automated)
 
+## Admin User Story-Based Tests:
+- **Test 1: Manage Tables (Manual)**  
+  Verify that the admin can create and manage new tables, ensuring they align with the new features for authentication and user profiles.
+
+- **Test 2: Invalidate Ideas (Manual)**  
+  Check that when an idea is invalidated, it no longer appears in user queries and ensure this action can be reversed.
+
+- **Test 3: Invalidate User Accounts (Automated)**  
+  Write a test that verifies the function correctly prevents a user from logging in after their account has been invalidated.
+
+## Authenticated User Story-Based Tests:
+- **Test 1: Google OAuth Login (Manual)**  
+  Manually test that an authenticated user can log in using their Google account, and access is restricted to users with the "lehigh.edu" domain.
+
+- **Test 2: Vote Functionality (Automated)**  
+  Write tests that verify upvote and downvote actions, including changing votes and resetting to a neutral state.
+
+- **Test 3: Comment on Posts (Automated)**  
+  Verify that an authenticated user can add and edit comments on posts, and that comments are stored correctly in the database.
+
+- **Test 4: Profile Editing (Manual)**  
+  Manually test that users can edit their profile information, ensuring updates are reflected correctly.
+
+- **Test 5: Profile Viewing (Manual)**  
+  Verify that users can view the profiles of any user. Make sure that all information is shown and is correct, with the exception of gender identity and sexual orientation, which should not be shown (unless the profile being viewed is the user’s own).
+
 ## System Drawing:
 https://lucid.app/lucidchart/516f5158-a2f9-45bb-adec-38fc204c9524/edit?invitationId=inv_94fccc9b-75ff-4b9c-a1c3-74b119f140b9&page=0_0#
 ## Updated mock web/mobile UI drawings
