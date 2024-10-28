@@ -20,28 +20,44 @@ https://lucid.app/lucidchart/bb642f5b-6855-418e-ad6d-f705a918baa4/edit?page=0_0&
 
 ## Thorough list of all backlog items for Phase 2 (including tech debt from Phase 1 and/or Phase 1')
 Mobile:
+
 Connect Mobile PUT and POST routes to database
+
 Web:
-    From phase 1:
+
+From phase 1:
+
 Frontend UI needs to be updated
+
 Get rid of that "Placeholder" box, as we are no longer putting anything there most likely
+
 Fix the colors
+
 Change the like and dislike buttons to icons instead of basic HTML buttons
+
 Whatever else you think makes sense
+
 More unit tests are needed
-Maybe a lot idk lol
+
 There could be more commenting in the files
+
 More console logs
+
 Test backend is pretty barebones
+
 Currently only has a hardcoded memory store with many hardcoded responses, only made to simply make sure that requests and responses work on the frontend, presuming the JSON formats are correct
+
 Add more main methods
+
 A main method that uses the proper in-memory datastore classes we created in the tutorials
+
 A main method that actually connects to the database(?)
+
 Add in another environment variable that you can set called MODE or something that allows you to quickly and easily choose which main method to run when running the backend
+
 .gitignore might need to be updated idk
 
-
-    For phase 2:
+For phase 2:
 Google OAuth
 Downvotes
 Comments
