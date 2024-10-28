@@ -55,9 +55,9 @@ https://lucid.app/lucidchart/516f5158-a2f9-45bb-adec-38fc204c9524/edit?invitatio
 ## Updated mock web/mobile UI drawings
 
 ## Updated state machine drawing for user persona�s interaction with the application
-![System Architecture Diagram](/docs/imgs/State_machine_diagram_1)
+![System Architecture Diagram](/docs/imgs/State_machine_diagram_1.png)
 ## NEW state machine drawing from perspective of an idea object (update, add comment, edit comment, like, repeated like, dislike, repeated dislike, delete comment)
-![System Architecture Diagram](/docs/imgs/State_machine_diagram_2)
+![System Architecture Diagram](/docs/imgs/State_machine_diagram_2.png)
 ## Updated listing of routes, their purpose, and format of passed objects
 
 
