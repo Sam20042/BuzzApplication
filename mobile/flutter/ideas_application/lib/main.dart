@@ -1,11 +1,24 @@
 import 'package:flutter/material.dart';
+import 'pages/login_page.dart'; // Import login page here
 import 'dart:convert'; // Import for JSON encoding/decoding
 import 'headers/header.dart';
 import 'headers/create_message.dart';
 import 'messages/message_list.dart';
 
 void main() {
-  runApp(const FigmaToCodeApp());
+  runApp(const MyApp());
+}
+
+class MyApp extends StatelessWidget {
+  const MyApp({super.key});
+
+  @override
+  Widget build(BuildContext context) {
+    return MaterialApp(
+      debugShowCheckedModeBanner: false,
+      home: LoginPage(), // Start with the login page
+    );
+  }
 }
 
 class FigmaToCodeApp extends StatefulWidget {
@@ -55,27 +68,22 @@ class _FigmaToCodeAppState extends State<FigmaToCodeApp> {
 
   @override
   Widget build(BuildContext context) {
-    return MaterialApp(
-      theme: ThemeData.light().copyWith(
-        scaffoldBackgroundColor: const Color(0xFFF5F5F5),
+    return Scaffold(
+      appBar: AppBar(
+        title: const Header(),
+        backgroundColor: Colors.white,
+        elevation: 0,
       ),
-      home: Scaffold(
-        appBar: AppBar(
-          title: const Header(),
-          backgroundColor: Colors.white,
-          elevation: 0,
-        ),
-        body: Column(
-          children: [
-            CreateMessage(onCreateMessage: addNewMessage), // Create new message
-            Expanded(
-              child: MessageList(
-                messages: messages,
-                onUpdateLikes: updateLikes, // Update likes for message
-              ),
+      body: Column(
+        children: [
+          CreateMessage(onCreateMessage: addNewMessage), // Create new message
+          Expanded(
+            child: MessageList(
+              messages: messages,
+              onUpdateLikes: updateLikes, // Update likes for message
             ),
-          ],
-        ),
+          ),
+        ],
       ),
     );
   }
