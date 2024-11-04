@@ -14,7 +14,8 @@ class LoginPage extends StatelessWidget {
 
   // sign user in method
   void signUserIn() {
-    // TODO: fill out method
+//this is for REGULAR sign in!!!
+
   }
 
   @override
