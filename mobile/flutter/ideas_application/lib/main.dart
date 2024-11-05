@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:ideas_application/pages/auth_page.dart';
 import 'pages/login_page.dart'; // Import login page here
 import 'dart:convert'; // Import for JSON encoding/decoding
 import 'headers/header.dart';
@@ -21,9 +22,9 @@ class MyApp extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return MaterialApp(
+    return const MaterialApp(
       debugShowCheckedModeBanner: false,
-      home: LoginPage(), // Start with the login page
+      home: AuthPage(), // Start with the login page (CHANGED TO AUTH)
     );
   }
 }
