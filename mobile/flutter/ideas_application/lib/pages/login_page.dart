@@ -5,6 +5,7 @@ import 'package:flutter/material.dart';
 import 'package:ideas_application/components/my_textfield.dart';
 import 'package:ideas_application/components/my_button.dart';
 import 'package:ideas_application/components/square_tile.dart';
+import 'package:ideas_application/services/auth_service.dart';
 
 class LoginPage extends StatefulWidget {
   LoginPage({super.key});
@@ -182,12 +183,17 @@ void wrongPasswordMessage(){
               const SizedBox(height: 50),
 
               // google sign in button
-              Row(
-                mainAxisAlignment: MainAxisAlignment.center,
-                children: const [
-                  SquareTile(imagePath: 'lib/images/googlelogo.png'),
-                  SizedBox(width: 25),
-                ],
+              // Row(
+              //   mainAxisAlignment: MainAxisAlignment.center,
+              //   children: const [
+              //     SquareTile(imagePath: 'lib/images/googlelogo.png'),
+              //     SizedBox(width: 25),
+              //   ],
+              // ),
+
+              ElevatedButton(
+                onPressed: () => AuthService().signInWithGoogle(), 
+                child: const Text("Google Sign In"),
               ),
 
               const SizedBox(height: 50),
