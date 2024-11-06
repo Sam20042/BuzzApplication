@@ -1,5 +1,5 @@
 import 'dart:convert';
-//import 'package:supabase_flutter/supabase_flutter.dart';
+
 import 'package:flutter/material.dart';
 import 'package:firebase_core/firebase_core.dart';
 import 'package:firebase_auth/firebase_auth.dart';
@@ -119,7 +119,7 @@ class _FigmaToCodeAppState extends State<FigmaToCodeApp> {
       ), // add drawer here
       body: Column(
         children: [
-          CreateMessage(onCreateMessage: addNewMessage), // Create new mesage
+          CreateMessage(onCreateMessage: addNewMessage), // Cre ate new message
           Expanded(
             child: MessageList(
               messages: messages,
