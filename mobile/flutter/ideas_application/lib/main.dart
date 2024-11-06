@@ -1,13 +1,17 @@
+import 'dart:convert';
+
 import 'package:flutter/material.dart';
-import 'package:ideas_application/pages/auth_page.dart';
-import 'pages/login_page.dart'; // Import login page here
-import 'dart:convert'; // Import for JSON encoding/decoding
+import 'package:firebase_core/firebase_core.dart';
+import 'package:firebase_auth/firebase_auth.dart';
+import 'package:ideas_application/components/drawer.dart';
+import 'package:ideas_application/pages/profile_page.dart';
+import 'firebase_options.dart';
+
+import 'pages/login_page.dart';
+import 'main.dart';
 import 'headers/header.dart';
 import 'headers/create_message.dart';
 import 'messages/message_list.dart';
-
-import 'package:firebase_core/firebase_core.dart';
-import 'firebase_options.dart';
 
 void main() async {
   WidgetsFlutterBinding.ensureInitialized();
@@ -22,9 +26,19 @@ class MyApp extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return const MaterialApp(
+    return MaterialApp(
       debugShowCheckedModeBanner: false,
-      home: AuthPage(), // Start with the login page (CHANGED TO AUTH)
+      home: StreamBuilder<User?>(
+        stream: FirebaseAuth.instance.authStateChanges(),
+        builder: (context, snapshot) {
+          // Check if the user is logged in
+          if (snapshot.hasData) {
+            return const FigmaToCodeApp(); // Main app page if logged in
+          } else {
+            return LoginPage(); // Login page if not logged in
+          }
+        },
+      ),
     );
   }
 }
@@ -74,6 +88,23 @@ class _FigmaToCodeAppState extends State<FigmaToCodeApp> {
     printDatabase(); // Print updated database
   }
 
+  void signOut() {
+    FirebaseAuth.instance.signOut();
+  }
+
+  void goToProfilePage() {
+    //pop menu drawber
+    Navigator.pop(context);
+
+    //go to a new page
+    Navigator.push(
+      context,
+      MaterialPageRoute(
+        builder: (context) => const ProfilePage(),
+      ),
+    );
+  }
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -82,13 +113,17 @@ class _FigmaToCodeAppState extends State<FigmaToCodeApp> {
         backgroundColor: Colors.white,
         elevation: 0,
       ),
+      drawer: MyDrawer(
+        onProfileTap: goToProfilePage,
+        onSignOut: signOut,
+      ), // add drawer here
       body: Column(
         children: [
-          CreateMessage(onCreateMessage: addNewMessage), // Create new message
+          CreateMessage(onCreateMessage: addNewMessage), // Create new mesage
           Expanded(
             child: MessageList(
               messages: messages,
-              onUpdateLikes: updateLikes, // Update likes for message
+              onUpdateLikes: updateLikes, // update likes for message
             ),
           ),
         ],
