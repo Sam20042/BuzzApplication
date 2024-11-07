@@ -6,7 +6,7 @@ import 'package:firebase_auth/firebase_auth.dart';
 import 'package:ideas_application/components/drawer.dart';
 import 'package:ideas_application/pages/profile_page.dart';
 import 'firebase_options.dart';
-
+// import 'components/comment.dart'; // Import the comments 
 import 'pages/login_page.dart';
 import 'main.dart';
 import 'headers/header.dart';
