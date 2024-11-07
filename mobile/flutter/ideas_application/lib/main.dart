@@ -1,15 +1,14 @@
-import 'dart:convert'; 
-import 'package:flutter/material.dart'; 
-import 'package:firebase_core/firebase_core.dart'; 
-import 'package:firebase_auth/firebase_auth.dart'; 
-import 'package:ideas_application/components/drawer.dart'; 
-import 'package:ideas_application/pages/profile_page.dart'; 
-import 'firebase_options.dart'; 
-import 'pages/login_page.dart'; 
-import 'headers/header.dart'; 
-import 'headers/create_message.dart'; 
-import 'messages/message_list.dart'; 
-import 'components/comment.dart'; // Import the Comment widget
+import 'dart:convert';
+import 'package:flutter/material.dart';
+import 'package:firebase_core/firebase_core.dart';
+import 'package:firebase_auth/firebase_auth.dart';
+import 'package:ideas_application/components/drawer.dart';
+import 'package:ideas_application/pages/profile_page.dart';
+import 'firebase_options.dart';
+import 'pages/login_page.dart';
+import 'headers/header.dart';
+import 'headers/create_message.dart';
+import 'messages/message_list.dart';
 
 void main() async {
   WidgetsFlutterBinding.ensureInitialized();
@@ -30,9 +29,9 @@ class MyApp extends StatelessWidget {
         stream: FirebaseAuth.instance.authStateChanges(),
         builder: (context, snapshot) {
           if (snapshot.hasData) {
-            return const FigmaToCodeApp();
+            return const FigmaToCodeApp(); // Main app page if logged in
           } else {
-            return LoginPage();
+            return LoginPage(); // Login page if not logged in
           }
         },
       ),
@@ -48,63 +47,65 @@ class FigmaToCodeApp extends StatefulWidget {
 }
 
 class _FigmaToCodeAppState extends State<FigmaToCodeApp> {
+  // Mock JSON database: List of messages
   List<Map<String, dynamic>> messages = [
-    {
-      "mId": 1,
-      "mMessage": "First message",
-      "mUpvotes": 0,
-      "comments": [
-        {"user": "User1", "text": "Nice message!", "time": "10:30 AM"}
-      ]
-    },
-    {
-      "mId": 2,
-      "mMessage": "Second message",
-      "mUpvotes": 10,
-      "comments": [
-        {"user": "User2", "text": "Interesting!", "time": "11:00 AM"}
-      ]
-    },
+    {"mId": 1, "mMessage": "First message", "mLikes": 0, "mDislikes": 0, "mComment": "Great post!"},
+    {"mId": 2, "mMessage": "Second message", "mLikes": 10, "mDislikes": 2, "mComment": "Nice work!"},
   ];
 
+  // Function to print the database (messages list) as JSON
   void printDatabase() {
-    String jsonString = jsonEncode(messages);
-    print('Database JSON: $jsonString');
+    String jsonString = jsonEncode(messages); // Convert to JSON string
+    print('Database JSON: $jsonString'); // Print the JSON string
   }
 
+  // Function to add a new message with 0 initial likes, dislikes, and a comment
   void addNewMessage(String message) {
     setState(() {
       messages.insert(0, {
-        "mId": messages.length + 1,
+        "mId": messages.length + 1, // Incremental ID
         "mMessage": message,
-        "mUpvotes": 0,
-        "comments": [],
+        "mLikes": 0, // Initial likes
+        "mDislikes": 0, // Initial dislikes
+        "mComment": '', // Empty comment initially
       });
     });
 
     print('New message added: $message');
-    printDatabase();
+    printDatabase(); // Print updated database
   }
 
-  void updateUpvotes(int id, int increment) {
+  // Function to update the like counter
+  void updateLikes(int id, int increment) {
     setState(() {
       final message = messages.firstWhere((msg) => msg['mId'] == id);
-      message['mUpvotes'] += increment;
+      message['mLikes'] += increment;
     });
 
-    print('Upvotes updated for message ID $id');
-    printDatabase();
+    print('Likes updated for message ID $id');
+    printDatabase(); // Print updated database
   }
 
-  void addComment(int messageId, String text) {
+  // Function to update the dislike counter
+  void updateDislikes(int id, int increment) {
     setState(() {
-      final message = messages.firstWhere((msg) => msg['mId'] == messageId);
-      message['comments'].add({
-        "user": "CurrentUser",
-        "text": text,
-        "time": DateTime.now().toString(),
-      });
+      final message = messages.firstWhere((msg) => msg['mId'] == id);
+      message['mDislikes'] += increment;
     });
+
+    print('Dislikes updated for message ID $id');
+    printDatabase(); // Print updated database
+  }
+
+  // Function to update the comment
+  void updateComment(int id, String newComment) {
+    setState(() {
+      final message = messages.firstWhere((msg) => msg['mId'] == id);
+      message['mComment'] = newComment;
+    });
+
+    print('Comment updated for message ID $id');
+    printDatabase(); // Print updated database
   }
 
   void signOut() {
@@ -112,7 +113,10 @@ class _FigmaToCodeAppState extends State<FigmaToCodeApp> {
   }
 
   void goToProfilePage() {
+    //pop menu drawer
     Navigator.pop(context);
+
+    //go to a new page
     Navigator.push(
       context,
       MaterialPageRoute(
@@ -135,73 +139,13 @@ class _FigmaToCodeAppState extends State<FigmaToCodeApp> {
       ),
       body: Column(
         children: [
-          CreateMessage(onCreateMessage: addNewMessage),
+          CreateMessage(onCreateMessage: addNewMessage), // Create new message
           Expanded(
-            child: ListView.builder(
-              itemCount: messages.length,
-              itemBuilder: (context, index) {
-                var message = messages[index];
-                return Card(
-                  margin: const EdgeInsets.symmetric(vertical: 8, horizontal: 16),
-                  child: Column(
-                    crossAxisAlignment: CrossAxisAlignment.start,
-                    children: [
-                      ListTile(
-                        title: Text(message['mMessage']),
-                        subtitle: Row(
-                          children: [
-                            IconButton(
-                              icon: Icon(Icons.thumb_up),
-                              onPressed: () => updateUpvotes(message['mId'], 1),
-                            ),
-                            Text('${message['mUpvotes']} upvotes'),
-                            IconButton(
-                              icon: Icon(Icons.comment),
-                              onPressed: () {
-                                showDialog(
-                                  context: context,
-                                  builder: (BuildContext context) {
-                                    TextEditingController commentController = TextEditingController();
-                                    return AlertDialog(
-                                      title: Text('Add a Comment'),
-                                      content: TextField(
-                                        controller: commentController,
-                                        decoration: InputDecoration(hintText: "Write your comment here..."),
-                                      ),
-                                      actions: [
-                                        TextButton(
-                                          onPressed: () {
-                                            addComment(message['mId'], commentController.text);
-                                            Navigator.pop(context);
-                                          },
-                                          child: Text('Post'),
-                                        ),
-                                      ],
-                                    );
-                                  },
-                                );
-                              },
-                            ),
-                          ],
-                        ),
-                      ),
-                      // Show the comments for each message
-                      Padding(
-                        padding: const EdgeInsets.only(left: 16, bottom: 8),
-                        child: Column(
-                          children: message['comments']
-                              .map<Widget>((comment) => Comment(
-                                    text: comment['text'],
-                                    user: comment['user'],
-                                    time: comment['time'],
-                                  ))
-                              .toList(),
-                        ),
-                      ),
-                    ],
-                  ),
-                );
-              },
+            child: MessageList(
+              messages: messages,
+              onUpdateLikes: updateLikes, // Update likes
+              onUpdateDislikes: updateDislikes, // Update dislikes
+              onUpdateComment: updateComment, // Update comment
             ),
           ),
         ],
