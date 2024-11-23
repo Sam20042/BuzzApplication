@@ -70,6 +70,7 @@ class _MessageItemState extends State<MessageItem> {
           ),
         ],
       ),
+      //trailing: Row()
     );
   }
 }
