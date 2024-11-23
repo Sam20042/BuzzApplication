@@ -1,4 +1,5 @@
 import 'dart:convert';
+import 'package:camera/camera.dart';
 import 'package:flutter/material.dart';
 import 'package:firebase_core/firebase_core.dart';
 import 'package:firebase_auth/firebase_auth.dart';
@@ -9,7 +10,9 @@ import 'pages/login_page.dart';
 import 'headers/header.dart';
 import 'headers/create_message.dart';
 import 'messages/message_list.dart';
+//import 'package:camera/camera.dart';
 
+//late List<CameraDescription> camera;
 void main() async {
   WidgetsFlutterBinding.ensureInitialized();
   await Firebase.initializeApp(
