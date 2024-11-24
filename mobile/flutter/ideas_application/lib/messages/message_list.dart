@@ -14,6 +14,19 @@ class MessageList extends StatelessWidget {
     required this.onUpdateComment,
   });
 
+  /*void goToProfilePage() {
+    //pop menu drawer
+    Navigator.pop(context);
+
+    //go to a new page
+    Navigator.push(
+      context,
+      MaterialPageRoute(
+        builder: (context) => const ProfilePage(),
+      ),
+    );
+  }*/
+
   @override
   Widget build(BuildContext context) {
     return ListView.builder(
@@ -90,6 +103,14 @@ class MessageList extends StatelessWidget {
                         color: Colors.black,
                       ),
                     ),
+                    const SizedBox(width: 100),
+
+                    //add a photo button
+                    IconButton(
+                      icon: const Icon(Icons.image),
+                      onPressed: () => onUpdateDislikes(message['mId'], 1), // Increment by 1
+                    ),
+                    const SizedBox(width: 8),
                   ],
                 ),
               ],
