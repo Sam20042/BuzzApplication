@@ -14,7 +14,7 @@ class MessageList extends StatelessWidget {
     required this.onUpdateComment,
   });
 
-  /*void goToProfilePage() {
+  /*void goToImagePage() {
     //pop menu drawer
     Navigator.pop(context);
 
@@ -22,7 +22,20 @@ class MessageList extends StatelessWidget {
     Navigator.push(
       context,
       MaterialPageRoute(
-        builder: (context) => const ProfilePage(),
+        builder: (context) => const imagePage(),
+      ),
+    );
+  }*/
+
+  /*void goToLinkPage() {
+    //pop menu drawer
+    Navigator.pop(context);
+
+    //go to a new page
+    Navigator.push(
+      context,
+      MaterialPageRoute(
+        builder: (context) => const linkPage(),
       ),
     );
   }*/
@@ -110,7 +123,14 @@ class MessageList extends StatelessWidget {
                       icon: const Icon(Icons.image),
                       onPressed: () => onUpdateDislikes(message['mId'], 1), // Increment by 1
                     ),
-                    const SizedBox(width: 8),
+                    const SizedBox(width: 4),
+
+                    //add a link button
+                    IconButton(
+                      icon: const Icon(Icons.link),
+                      onPressed: () => onUpdateDislikes(message['mId'], 1), // Increment by 1
+                    ),
+
                   ],
                 ),
               ],
