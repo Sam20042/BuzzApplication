@@ -10,6 +10,7 @@ import 'pages/login_page.dart';
 import 'headers/header.dart';
 import 'headers/create_message.dart';
 import 'messages/message_list.dart';
+import 'package:shared_preferences/shared_preferences.dart';
 //import 'package:camera/camera.dart';
 
 //late List<CameraDescription> camera;
@@ -20,6 +21,23 @@ void main() async {
   );
   runApp(const MyApp());
 }
+/*SharedPreferences? prefs;
+
+  @override
+  void initState(){
+    super.initState();
+    initPrefs();
+  }
+
+  void initPrefs() async{ //in order to get the method asyncronosly
+    prefs = await SharedPreferences.getInstance();
+    setData();  
+  }
+
+  void setData() {
+    prefs?.setString('Movie', 'Ice');
+    print("set prefs method called");
+  }*/
 
 class MyApp extends StatelessWidget {
   const MyApp({super.key});
@@ -41,6 +59,8 @@ class MyApp extends StatelessWidget {
     );
   }
 }
+
+
 
 class FigmaToCodeApp extends StatefulWidget {
   const FigmaToCodeApp({super.key});
