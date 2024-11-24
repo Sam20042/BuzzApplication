@@ -1,5 +1,4 @@
 import 'package:flutter/material.dart';
-
 class MessageList extends StatelessWidget {
   final List<Map<String, dynamic>> messages;
   final Function(int, int) onUpdateLikes; // Takes ID and increment (+1/-1)
@@ -39,7 +38,7 @@ class MessageList extends StatelessWidget {
       ),
     );
   }*/
-
+  
   @override
   Widget build(BuildContext context) {
     return ListView.builder(
@@ -86,6 +85,7 @@ class MessageList extends StatelessWidget {
                     IconButton(
                       icon: const Icon(Icons.thumb_up),
                       onPressed: () => onUpdateLikes(message['mId'], 1), // Increment by 1
+
                     ),
                     const SizedBox(width: 4),
 
@@ -141,3 +141,4 @@ class MessageList extends StatelessWidget {
     );
   }
 }
+

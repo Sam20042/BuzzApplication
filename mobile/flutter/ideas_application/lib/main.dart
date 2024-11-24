@@ -128,6 +128,19 @@ class _FigmaToCodeAppState extends State<FigmaToCodeApp> {
     );
   }
 
+  void goToImagePage() {
+    //pop menu drawer
+    Navigator.pop(context);
+
+    //go to a new page
+    Navigator.push(
+      context,
+      MaterialPageRoute(
+        builder: (context) => const ImagePage(),
+      ),
+    );
+  }
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
