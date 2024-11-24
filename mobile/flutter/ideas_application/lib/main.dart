@@ -128,7 +128,7 @@ class _FigmaToCodeAppState extends State<FigmaToCodeApp> {
     );
   }
 
-  void goToImagePage() {
+  /*void goToImagePage() {
     //pop menu drawer
     Navigator.pop(context);
 
@@ -139,7 +139,7 @@ class _FigmaToCodeAppState extends State<FigmaToCodeApp> {
         builder: (context) => const ImagePage(),
       ),
     );
-  }
+  }*/
 
   @override
   Widget build(BuildContext context) {
