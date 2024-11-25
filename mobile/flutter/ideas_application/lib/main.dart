@@ -7,32 +7,17 @@ import 'package:ideas_application/components/drawer.dart';
 import 'package:ideas_application/pages/profile_page.dart';
 import 'firebase_options.dart';
 import 'pages/login_page.dart';
+import 'pages/image_page.dart';
 import 'headers/header.dart';
 import 'headers/create_message.dart';
 import 'messages/message_list.dart';
 import 'package:shared_preferences/shared_preferences.dart';
-//import 'package:camera/camera.dart';
+import 'package:camera/camera.dart';
 
-//late List<CameraDescription> camera;
-/*SharedPreferences? prefs;
-
-  @override
-  void initState(){
-    super.initState();
-    initPrefs();
-  }
-
-  void initPrefs() async{ //in order to get the method asyncronosly
-    prefs = await SharedPreferences.getInstance();
-    setData();  
-  }
-
-  void setData() {
-    prefs?.setString('Movie', 'Ice');
-    print("set prefs method called");
-  }*/
+late List<CameraDescription> camera;
 void main() async {
   WidgetsFlutterBinding.ensureInitialized();
+  camera = await availableCameras();
   await Firebase.initializeApp(
     options: DefaultFirebaseOptions.currentPlatform,
   );
@@ -49,11 +34,13 @@ class MyApp extends StatefulWidget{
 
 class _MyApp extends State<MyApp> {
   SharedPreferences? prefs;
+  late CameraController controll;
 
   @override
   void initState(){
     super.initState();
     initPrefs();
+    startCamera();
   }
 
   void initPrefs() async{ //in order to get the method asyncronosly
@@ -69,8 +56,29 @@ class _MyApp extends State<MyApp> {
   void getData(){
     String food =prefs?.getString('favoriteFood') ?? 'null';
   }  
+
+  void startCamera(){
+    controll = CameraController(camera[0], ResolutionPreset.medium);
+    controll.initialize().then((_) {
+      if(! mounted){
+        return;
+      }
+      setState((){});
+    });
+  }
+
+  @override
+  void dispose(){
+    controll.dispose();
+    super.dispose();
+  }
+
+
   @override
   Widget build(BuildContext context) {
+    /*if(!controll.value.isInitialized){
+      return Container();
+    }*/
     return MaterialApp(
       debugShowCheckedModeBanner: false,
       home: StreamBuilder<User?>(
@@ -175,7 +183,7 @@ class _FigmaToCodeAppState extends State<FigmaToCodeApp> {
     );
   }
 
-  /*void goToImagePage() {
+  void goToImagePage() {
     //pop menu drawer
     Navigator.pop(context);
 
@@ -186,7 +194,7 @@ class _FigmaToCodeAppState extends State<FigmaToCodeApp> {
         builder: (context) => const ImagePage(),
       ),
     );
-  }*/
+  }
 
   @override
   Widget build(BuildContext context) {
