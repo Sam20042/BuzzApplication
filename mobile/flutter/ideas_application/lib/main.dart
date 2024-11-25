@@ -14,13 +14,6 @@ import 'package:shared_preferences/shared_preferences.dart';
 //import 'package:camera/camera.dart';
 
 //late List<CameraDescription> camera;
-void main() async {
-  WidgetsFlutterBinding.ensureInitialized();
-  await Firebase.initializeApp(
-    options: DefaultFirebaseOptions.currentPlatform,
-  );
-  runApp(const MyApp());
-}
 /*SharedPreferences? prefs;
 
   @override
@@ -38,10 +31,44 @@ void main() async {
     prefs?.setString('Movie', 'Ice');
     print("set prefs method called");
   }*/
-
-class MyApp extends StatelessWidget {
+void main() async {
+  WidgetsFlutterBinding.ensureInitialized();
+  await Firebase.initializeApp(
+    options: DefaultFirebaseOptions.currentPlatform,
+  );
+  runApp(const MyApp());
+}
+class MyApp extends StatefulWidget{
   const MyApp({super.key});
 
+  @override
+  State<StatefulWidget> createState() {
+    return _MyApp();
+  }
+}
+
+class _MyApp extends State<MyApp> {
+  SharedPreferences? prefs;
+
+  @override
+  void initState(){
+    super.initState();
+    initPrefs();
+  }
+
+  void initPrefs() async{ //in order to get the method asyncronosly
+    prefs = await SharedPreferences.getInstance();
+    setData();  
+  }
+
+  void setData() {
+    prefs?.setString('Movie', 'Ice');
+    print("set prefs method called");
+  }
+
+  void getData(){
+    String food =prefs?.getString('favoriteFood') ?? 'null';
+  }  
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
