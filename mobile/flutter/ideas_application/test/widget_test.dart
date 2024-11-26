@@ -6,14 +6,22 @@
 // tree, read text, and verify that the values of widget properties are correct.
 
 import 'package:flutter_test/flutter_test.dart';
-
-import 'package:ideas_application/main.dart';
+import 'package:flutter/material.dart';
+import 'package:ideas_application/pages/image_page.dart';
 
 void main() {
-  testWidgets('Verify if Create Idea button exists', (WidgetTester tester) async {
-    await tester.pumpWidget(const FigmaToCodeApp());
+  testWidgets('Verify if image and camera button exists', (WidgetTester tester) async {
+    await tester.pumpWidget(
+      const MaterialApp(
+        home: ImagePage(),
+      ),
+    );
 
-    // Check if Create Idea button is present
-    expect(find.text('Create Idea'), findsOneWidget);
+    // Check if Camera Icon is present
+    var check = find.byIcon(Icons.image);
+    var check2 = find.byIcon(Icons.camera_alt_rounded);
+    expect(check, findsOneWidget);
+    expect(check2, findsOneWidget);
+    //
   });
 }

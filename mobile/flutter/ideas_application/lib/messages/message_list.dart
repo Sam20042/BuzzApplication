@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:ideas_application/pages/image_page.dart';
+import 'package:ideas_application/pages/link_page.dart';
 class MessageList extends StatelessWidget {
   final List<Map<String, dynamic>> messages;
   final Function(int, int) onUpdateLikes; // Takes ID and increment (+1/-1)
@@ -106,7 +107,9 @@ class MessageList extends StatelessWidget {
                     //add a link button
                     IconButton(
                       icon: const Icon(Icons.link),
-                      onPressed: () => onUpdateDislikes(message['mId'], 1), // Increment by 1
+                      onPressed: () {
+                        Navigator.push(context,MaterialPageRoute(builder: (context) => const LinkPage()));
+                      }
                     ),
 
                   ],
