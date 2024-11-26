@@ -13,32 +13,6 @@ class MessageList extends StatelessWidget {
     required this.onUpdateDislikes,
     required this.onUpdateComment,
   });
-
-  /*void goToImagePage() {
-    //pop menu drawer
-    Navigator.pop(context);
-
-    //go to a new page
-    Navigator.push(
-      context,
-      MaterialPageRoute(
-        builder: (context) => const imagePage(),
-      ),
-    );
-  }*/
-
-  /*void goToLinkPage() {
-    //pop menu drawer
-    Navigator.pop(context);
-
-    //go to a new page
-    Navigator.push(
-      context,
-      MaterialPageRoute(
-        builder: (context) => const linkPage(),
-      ),
-    );
-  }*/
   
   @override
   Widget build(BuildContext context) {

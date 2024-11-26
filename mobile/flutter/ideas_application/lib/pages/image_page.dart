@@ -5,6 +5,7 @@ import 'package:firebase_auth/firebase_auth.dart';
 import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter/material.dart';
 import 'package:ideas_application/components/text_box.dart';
+import 'package:ideas_application/pages/gallery_page.dart';
 import 'package:ideas_application/pages/home_page.dart';
 import 'package:ideas_application/pages/camera_page.dart';
 
@@ -40,19 +41,22 @@ class _ImagePage extends State<ImagePage>
       ),
       body: ListView(
         children: [
+          const SizedBox(height : 100),
           IconButton(
-            icon: const Icon(Icons.camera),
+            iconSize: 100,
+            icon: const Icon(Icons.camera_alt_rounded),
             onPressed: () {
               Navigator.push(context,MaterialPageRoute(builder: (context) => const CameraPage()));
             }
           ),
-          const SizedBox(width: 4),
+          const SizedBox(height: 100),
 
           //add a link button
           IconButton(
-            icon: const Icon(Icons.browse_gallery),
+            iconSize: 100,
+            icon: const Icon(Icons.image),
             onPressed: () {
-              Navigator.push(context,MaterialPageRoute(builder: (context) => const CameraPage()));
+              Navigator.push(context,MaterialPageRoute(builder: (context) => const GalleryPage()));
             }
             ),
         ],
