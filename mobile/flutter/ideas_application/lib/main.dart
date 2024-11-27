@@ -12,12 +12,9 @@ import 'headers/header.dart';
 import 'headers/create_message.dart';
 import 'messages/message_list.dart';
 import 'package:shared_preferences/shared_preferences.dart';
-//import 'package:camera/camera.dart';
 
-//late List<CameraDescription> camera;
 void main() async {
   WidgetsFlutterBinding.ensureInitialized();
-  //camera = await availableCameras();
   await Firebase.initializeApp(
     options: DefaultFirebaseOptions.currentPlatform,
   );
@@ -40,7 +37,6 @@ class _MyApp extends State<MyApp> {
   void initState(){
     super.initState();
     initPrefs();
-    //startCamera();
   }
 
   void initPrefs() async{ //in order to get the method asyncronosly
@@ -56,16 +52,6 @@ class _MyApp extends State<MyApp> {
   void getData(){
     String food =prefs?.getString('favoriteFood') ?? 'null';
   }  
-
-  /*void startCamera(){
-    controll = CameraController(camera[0], ResolutionPreset.medium);
-    controll.initialize().then((_) {
-      if(! mounted){
-        return;
-      }
-      setState((){});
-    });
-  }*/
 
   @override
   void dispose(){

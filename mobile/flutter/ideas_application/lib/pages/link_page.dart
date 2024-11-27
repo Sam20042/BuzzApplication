@@ -11,6 +11,7 @@ import 'package:ideas_application/messages/message_list.dart';
 import 'package:ideas_application/pages/home_page.dart';
 import 'package:ideas_application/pages/image_page.dart';
 import 'package:ideas_application/pages/profile_page.dart';
+import 'package:ideas_application/main.dart';
 import 'package:url_launcher/url_launcher.dart';
 
 class LinkPage extends StatefulWidget{
@@ -45,6 +46,7 @@ class _LinkPage extends State<LinkPage>
             onChanged: (value) {
               setState(() {
                 url = value;
+                //const FigmaToCodeApp.updateComment();
               });
             }
           ),
@@ -52,7 +54,7 @@ class _LinkPage extends State<LinkPage>
           IconButton(
             icon: const Icon(Icons.skip_next_outlined),
             onPressed: () {
-              Navigator.push(context,MaterialPageRoute(builder: (context) => HomePage()));
+              Navigator.push(context,MaterialPageRoute(builder: (context) => const MyApp()));
             }
           ),
         ],
