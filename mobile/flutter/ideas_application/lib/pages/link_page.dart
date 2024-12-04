@@ -12,11 +12,13 @@ import 'package:ideas_application/pages/home_page.dart';
 import 'package:ideas_application/pages/image_page.dart';
 import 'package:ideas_application/pages/profile_page.dart';
 import 'package:ideas_application/main.dart';
+import 'package:ideas_application/headers/create_message.dart';
 import 'package:url_launcher/url_launcher.dart';
 
 class LinkPage extends StatefulWidget{
-  const LinkPage({super.key});
-
+  //const LinkPage({super.key});
+  final Function(int,String) onUpdateComment;
+  const LinkPage({super.key, required this.onUpdateComment});
   @override 
   State<LinkPage> createState() => _LinkPage();
 }
@@ -54,6 +56,8 @@ class _LinkPage extends State<LinkPage>
           IconButton(
             icon: const Icon(Icons.skip_next_outlined),
             onPressed: () {
+              widget.onUpdateComment(1,url);
+              //LinkPage.editMessage(url);
               Navigator.push(context,MaterialPageRoute(builder: (context) => const MyApp()));
             }
           ),

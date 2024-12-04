@@ -119,6 +119,22 @@ class _FigmaToCodeAppState extends State<FigmaToCodeApp> {
     printDatabase(); // Print updated database
   }
 
+  //Function to edit messages
+  void editMessage(String message) {
+    setState(() {
+      messages.insert(0, {
+        "mId": 1, // Incremental ID
+        "mMessage": message,
+        "mLikes": 0, // Initial likes
+        "mDislikes": 0, // Initial dislikes
+        "mComment": '', // Empty comment initially
+      });
+    });
+
+    print('Edited message: $message');
+    printDatabase(); // Print updated database
+  }
+
   // Function to update the like counter
   void updateLikes(int id, int increment) {
     setState(() {
