@@ -107,8 +107,19 @@ class MessageList extends StatelessWidget {
                     //add a link button
                     IconButton(
                       icon: const Icon(Icons.link),
-                      onPressed: () {
-                        Navigator.push(context,MaterialPageRoute(builder: (context) => const LinkPage(onUpdateComment: ())));
+                      onPressed: () async {
+                        final newMessage = await Navigator.push<String>(
+                          context,
+                          MaterialPageRoute(
+                            builder: (context) => LinkPage(Messageid: message['mId'], onUpdateComment: (id,url){
+                              onUpdateComment(id,url);
+                            })
+                          )
+                        );
+                        String updateMessage = newMessage!;
+                        onUpdateComment(message['mId'], updateMessage);
+
+                        //Navigator.push(context,MaterialPageRoute(builder: (context) => const LinkPage(onUpdateComment: ())));
                       }
                     ),
 

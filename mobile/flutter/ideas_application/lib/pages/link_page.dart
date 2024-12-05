@@ -18,7 +18,8 @@ import 'package:url_launcher/url_launcher.dart';
 class LinkPage extends StatefulWidget{
   //const LinkPage({super.key});
   final Function(int,String) onUpdateComment;
-  const LinkPage({super.key, required this.onUpdateComment});
+  final int Messageid;
+  const LinkPage({super.key, required this.onUpdateComment, required this.Messageid});
   @override 
   State<LinkPage> createState() => _LinkPage();
 }
@@ -56,9 +57,8 @@ class _LinkPage extends State<LinkPage>
           IconButton(
             icon: const Icon(Icons.skip_next_outlined),
             onPressed: () {
-              widget.onUpdateComment(1,url);
-              //LinkPage.editMessage(url);
-              Navigator.push(context,MaterialPageRoute(builder: (context) => const MyApp()));
+              widget.onUpdateComment(widget.Messageid,url);
+              Navigator.pop(context); //sends all the information back as well as goes to the home screen
             }
           ),
         ],
