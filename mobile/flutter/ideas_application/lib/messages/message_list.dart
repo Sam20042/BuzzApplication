@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:ideas_application/pages/image_page.dart';
 import 'package:ideas_application/pages/link_page.dart';
+import 'package:url_launcher/url_launcher.dart';
 class MessageList extends StatelessWidget {
   final List<Map<String, dynamic>> messages;
   final Function(int, int) onUpdateLikes; // Takes ID and increment (+1/-1)
@@ -21,7 +22,7 @@ class MessageList extends StatelessWidget {
       itemCount: messages.length,
       itemBuilder: (context, index) {
         final message = messages[index];
-
+        String updateMessage = '';
         return Card(
           margin: const EdgeInsets.symmetric(vertical: 8.0, horizontal: 16.0),
           child: ListTile(
@@ -92,7 +93,16 @@ class MessageList extends StatelessWidget {
                         color: Colors.black,
                       ),
                     ),
-                    const SizedBox(width: 100),
+                    const SizedBox(width: 20),
+
+                    TextButton(onPressed: () async{
+                      if(message['mComment'] != null){
+                        var newUrl = Uri.https(message['mComment']);
+                        if(await canLaunchUrl(newUrl)){
+                          await launchUrl(newUrl);
+                        }
+                      }
+                    }, child: const Text("open link")),
 
                     //add a photo button
                     IconButton(
@@ -116,13 +126,12 @@ class MessageList extends StatelessWidget {
                             })
                           )
                         );
-                        String updateMessage = newMessage!;
-                        onUpdateComment(message['mId'], updateMessage);
-
-                        //Navigator.push(context,MaterialPageRoute(builder: (context) => const LinkPage(onUpdateComment: ())));
+                        if(newMessage != null){
+                          updateMessage = newMessage;
+                          onUpdateComment(message['mId'], updateMessage);
+                        }
                       }
                     ),
-
                   ],
                 ),
               ],
