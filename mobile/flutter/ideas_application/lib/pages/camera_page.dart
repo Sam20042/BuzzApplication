@@ -7,7 +7,6 @@ import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter/material.dart';
 import 'package:ideas_application/components/text_box.dart';
 import 'package:ideas_application/pages/home_page.dart';
-import 'package:ideas_application/pages/image_page.dart';
 
 class CameraPage extends StatefulWidget{
   const CameraPage({super.key});
@@ -49,6 +48,7 @@ class _ImagePage extends State<CameraPage>
             IconButton(onPressed: () async {
               XFile picture = await camController!.takePicture();
               Gal.putImage(picture.path,);
+              Navigator.pop(context);
             }, 
               iconSize: 50,
               icon: const Icon(

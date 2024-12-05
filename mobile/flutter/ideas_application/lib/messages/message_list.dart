@@ -1,7 +1,8 @@
 import 'package:flutter/material.dart';
-import 'package:ideas_application/pages/image_page.dart';
+import 'package:ideas_application/pages/gallery_page.dart';
 import 'package:ideas_application/pages/link_page.dart';
 import 'package:url_launcher/url_launcher.dart';
+import 'package:ideas_application/pages/camera_page.dart';
 class MessageList extends StatelessWidget {
   final List<Map<String, dynamic>> messages;
   final Function(int, int) onUpdateLikes; // Takes ID and increment (+1/-1)
@@ -24,7 +25,7 @@ class MessageList extends StatelessWidget {
         final message = messages[index];
         String updateMessage = '';
         return Card(
-          margin: const EdgeInsets.symmetric(vertical: 8.0, horizontal: 16.0),
+          margin: const EdgeInsets.symmetric(vertical: 8.0, horizontal: 8.0),
           child: ListTile(
             contentPadding: const EdgeInsets.all(8.0),
             title: Text(
@@ -64,14 +65,14 @@ class MessageList extends StatelessWidget {
                       onPressed: () => onUpdateLikes(message['mId'], 1), // Increment by 1
 
                     ),
-                    const SizedBox(width: 4),
+                    const SizedBox(width: 2),
 
                     // Dislike Button
                     IconButton(
                       icon: const Icon(Icons.thumb_down),
                       onPressed: () => onUpdateDislikes(message['mId'], 1), // Increment by 1
                     ),
-                    const SizedBox(width: 8),
+                    const SizedBox(width: 2),
 
                     // Like Counter
                     Text(
@@ -82,7 +83,7 @@ class MessageList extends StatelessWidget {
                         color: Colors.black,
                       ),
                     ),
-                    const SizedBox(width: 16),
+                    const SizedBox(width: 8),
 
                     // Dislike Counter
                     Text(
@@ -93,26 +94,34 @@ class MessageList extends StatelessWidget {
                         color: Colors.black,
                       ),
                     ),
-                    const SizedBox(width: 20),
-
-                    TextButton(onPressed: () async{
-                      if(message['mComment'] != null){
-                        var newUrl = Uri.https(message['mComment']);
-                        if(await canLaunchUrl(newUrl)){
-                          await launchUrl(newUrl);
-                        }
-                      }
-                    }, child: const Text("open link")),
+                    const SizedBox(width: 10),
 
                     //add a photo button
                     IconButton(
                       icon: const Icon(Icons.image),
-                      onPressed: () {
-                        Navigator.push(context,MaterialPageRoute(builder: (context) => const ImagePage()));
+                      onPressed: () async{
+                        final newMessage = await Navigator.push<String>(
+                          context,
+                          MaterialPageRoute(
+                            builder: (context) => GalleryPage(Messageid: message['mId'], onUpdateComment: (id,url){
+                              onUpdateComment(id,url);
+                            })
+                          )
+                        );
+                        if(newMessage != null){
+                          updateMessage = newMessage;
+                          onUpdateComment(message['mId'], updateMessage);
+                        }
                       }
                       //onPressed: () => onUpdateDislikes(message['mId'], 1), // Increment by 1
                     ),
-                    const SizedBox(width: 4),
+                    const SizedBox(width: 1),
+                    IconButton(
+                      icon: const Icon(Icons.camera_alt_rounded),
+                      onPressed: () {
+                        Navigator.push(context,MaterialPageRoute(builder: (context) => const CameraPage()));
+                      }
+                  ),
 
                     //add a link button
                     IconButton(
@@ -132,6 +141,14 @@ class MessageList extends StatelessWidget {
                         }
                       }
                     ),
+                    TextButton(onPressed: () async{
+                      if(message['mComment'] != null){
+                        var newUrl = Uri.https(message['mComment']);
+                        if(await canLaunchUrl(newUrl)){
+                          await launchUrl(newUrl);
+                        }
+                      }
+                    }, child: const Text("open link")),
                   ],
                 ),
               ],

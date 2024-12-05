@@ -7,10 +7,10 @@
 
 import 'package:flutter_test/flutter_test.dart';
 import 'package:flutter/material.dart';
-import 'package:ideas_application/pages/image_page.dart';
+
 
 void main() {
-  testWidgets('Verify if image and camera button exists', (WidgetTester tester) async {
+  /*testWidgets('Verify if image and camera button exists', (WidgetTester tester) async {
     await tester.pumpWidget(
       const MaterialApp(
         home: ImagePage(),
@@ -23,5 +23,5 @@ void main() {
     expect(check, findsOneWidget);
     expect(check2, findsOneWidget);
     //
-  });
+  });*/
 }

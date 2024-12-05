@@ -9,7 +9,6 @@ import 'package:ideas_application/messages/message_list.dart';
 import 'package:ideas_application/pages/gallery_page.dart';
 import 'package:ideas_application/messages/message_list.dart';
 import 'package:ideas_application/pages/home_page.dart';
-import 'package:ideas_application/pages/image_page.dart';
 import 'package:ideas_application/pages/profile_page.dart';
 import 'package:ideas_application/main.dart';
 import 'package:ideas_application/headers/create_message.dart';

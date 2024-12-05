@@ -7,7 +7,6 @@ import 'package:ideas_application/components/drawer.dart';
 import 'package:ideas_application/pages/profile_page.dart';
 import 'firebase_options.dart';
 import 'pages/login_page.dart';
-import 'pages/image_page.dart';
 import 'headers/header.dart';
 import 'headers/create_message.dart';
 import 'messages/message_list.dart';
@@ -111,7 +110,7 @@ class _FigmaToCodeAppState extends State<FigmaToCodeApp> {
         "mMessage": message,
         "mLikes": 0, // Initial likes
         "mDislikes": 0, // Initial dislikes
-        "mComment": '', // Empty comment initially
+        "mComment": null, // Empty comment initially
       });
     });
 
@@ -127,7 +126,7 @@ class _FigmaToCodeAppState extends State<FigmaToCodeApp> {
         "mMessage": message,
         "mLikes": 0, // Initial likes
         "mDislikes": 0, // Initial dislikes
-        "mComment": '', // Empty comment initially
+        "mComment": null, // Empty comment initially
       });
     });
 
@@ -185,18 +184,6 @@ class _FigmaToCodeAppState extends State<FigmaToCodeApp> {
     );
   }
 
-  void goToImagePage() {
-    //pop menu drawer
-    Navigator.pop(context);
-
-    //go to a new page
-    Navigator.push(
-      context,
-      MaterialPageRoute(
-        builder: (context) => const ImagePage(),
-      ),
-    );
-  }
 
   @override
   Widget build(BuildContext context) {
