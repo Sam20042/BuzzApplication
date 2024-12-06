@@ -28,7 +28,7 @@ class MessageList extends StatelessWidget {
       itemBuilder: (context, index) {
         final message = messages[index];
         String updateMessage = '';
-        File updateMessageImage = File('');
+        String updateMessageImage = '';
         return Card(
           margin: const EdgeInsets.symmetric(vertical: 8.0, horizontal: 8.0),
           child: ListTile(
@@ -111,17 +111,20 @@ class MessageList extends StatelessWidget {
                     IconButton(
                       icon: const Icon(Icons.image),
                       onPressed: () async{
-                        final newMessage = await Navigator.push<File>(
+                        final newMessage = await Navigator.push<String>(
                           context,
                           MaterialPageRoute(
-                            builder: (context) => GalleryPage(Messageid: message['mId'], onUpdateCommentImage: (id,url){
-                              onUpdateCommentImage(id,updateMessageImage);
+                            builder: (context) => GalleryPage(Messageid: message['mId'], onUpdateComment: (id,updateMessage){
+                              onUpdateComment(id,updateMessage);
                             })
                           )
                         );
                         if(newMessage != null){
                           updateMessageImage = newMessage;
-                          onUpdateCommentImage(message['mId'], updateMessageImage);
+                          File fileToUpload = File(updateMessageImage);
+                          onUpdateCommentImage(message['mId'], fileToUpload);
+                        }else{
+                          print("no file found");
                         }
                       }
                     ),
