@@ -11,6 +11,8 @@ import 'headers/header.dart';
 import 'headers/create_message.dart';
 import 'messages/message_list.dart';
 import 'package:shared_preferences/shared_preferences.dart';
+import 'dart:io';
+import 'package:image_picker/image_picker.dart';
 
 void main() async {
   WidgetsFlutterBinding.ensureInitialized();
@@ -167,6 +169,16 @@ class _FigmaToCodeAppState extends State<FigmaToCodeApp> {
     printDatabase(); // Print updated database
   }
 
+  void updateCommentImage(int id, File? image){
+    setState(() {
+      final message = messages.firstWhere((msg) => msg['mId'] == id);
+      message['mComment'] = image?.path;
+    });
+
+    print('Comment updated for message ID $id with the file path');
+    printDatabase(); // Print updated database
+  }
+
   void signOut() {
     FirebaseAuth.instance.signOut();
   }
@@ -206,6 +218,7 @@ class _FigmaToCodeAppState extends State<FigmaToCodeApp> {
               onUpdateLikes: updateLikes, // Update likes
               onUpdateDislikes: updateDislikes, // Update dislikes
               onUpdateComment: updateComment, // Update comment
+              onUpdateCommentImage: updateCommentImage, //update comment with image
             ),
           ),
         ],

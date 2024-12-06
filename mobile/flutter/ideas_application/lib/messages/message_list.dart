@@ -3,11 +3,14 @@ import 'package:ideas_application/pages/gallery_page.dart';
 import 'package:ideas_application/pages/link_page.dart';
 import 'package:url_launcher/url_launcher.dart';
 import 'package:ideas_application/pages/camera_page.dart';
+import 'dart:io';
+
 class MessageList extends StatelessWidget {
   final List<Map<String, dynamic>> messages;
   final Function(int, int) onUpdateLikes; // Takes ID and increment (+1/-1)
   final Function(int, int) onUpdateDislikes; // Takes ID and increment (+1/-1)
   final Function(int, String) onUpdateComment; // Takes ID and new comment
+  final Function (int, File?) onUpdateCommentImage;
 
   const MessageList({
     super.key,
@@ -15,6 +18,7 @@ class MessageList extends StatelessWidget {
     required this.onUpdateLikes,
     required this.onUpdateDislikes,
     required this.onUpdateComment,
+    required this.onUpdateCommentImage,
   });
   
   @override
@@ -24,6 +28,7 @@ class MessageList extends StatelessWidget {
       itemBuilder: (context, index) {
         final message = messages[index];
         String updateMessage = '';
+        File updateMessageImage = File('');
         return Card(
           margin: const EdgeInsets.symmetric(vertical: 8.0, horizontal: 8.0),
           child: ListTile(
@@ -103,14 +108,14 @@ class MessageList extends StatelessWidget {
                         final newMessage = await Navigator.push<String>(
                           context,
                           MaterialPageRoute(
-                            builder: (context) => GalleryPage(Messageid: message['mId'], onUpdateComment: (id,url){
-                              onUpdateComment(id,url);
+                            builder: (context) => GalleryPage(Messageid: message['mId'], onUpdateCommentImage: (id,url){
+                              onUpdateCommentImage(id,updateMessageImage);
                             })
                           )
                         );
                         if(newMessage != null){
                           updateMessage = newMessage;
-                          onUpdateComment(message['mId'], updateMessage);
+                          onUpdateCommentImage(message['mId'], updateMessageImage);
                         }
                       }
                       //onPressed: () => onUpdateDislikes(message['mId'], 1), // Increment by 1
