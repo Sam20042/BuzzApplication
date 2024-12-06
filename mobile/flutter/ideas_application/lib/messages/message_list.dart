@@ -45,6 +45,12 @@ class MessageList extends StatelessWidget {
               crossAxisAlignment: CrossAxisAlignment.start,
               children: [
                 // Comment Display
+                if(message['mImage'] != null)
+                  Image.file(message['mImage'],
+                  width: 50,
+                  height: 50)
+                  else
+                    const Text('No Image'),
                 Text(
                   'Comment: ${message['mComment'] ?? 'No comment'}',
                   style: const TextStyle(
@@ -105,7 +111,7 @@ class MessageList extends StatelessWidget {
                     IconButton(
                       icon: const Icon(Icons.image),
                       onPressed: () async{
-                        final newMessage = await Navigator.push<String>(
+                        final newMessage = await Navigator.push<File>(
                           context,
                           MaterialPageRoute(
                             builder: (context) => GalleryPage(Messageid: message['mId'], onUpdateCommentImage: (id,url){
@@ -114,11 +120,10 @@ class MessageList extends StatelessWidget {
                           )
                         );
                         if(newMessage != null){
-                          updateMessage = newMessage;
+                          updateMessageImage = newMessage;
                           onUpdateCommentImage(message['mId'], updateMessageImage);
                         }
                       }
-                      //onPressed: () => onUpdateDislikes(message['mId'], 1), // Increment by 1
                     ),
                     const SizedBox(width: 1),
                     IconButton(

@@ -94,8 +94,8 @@ class FigmaToCodeApp extends StatefulWidget {
 class _FigmaToCodeAppState extends State<FigmaToCodeApp> {
   // Mock JSON database: List of messages
   List<Map<String, dynamic>> messages = [
-    {"mId": 1, "mMessage": "First message", "mLikes": 0, "mDislikes": 0, "mComment": "Great post!"},
-    {"mId": 2, "mMessage": "Second message", "mLikes": 10, "mDislikes": 2, "mComment": "Nice work!"},
+    {"mId": 1, "mMessage": "First message", "mLikes": 0, "mDislikes": 0, "mComment": "Great post!", "mImage": null},
+    {"mId": 2, "mMessage": "Second message", "mLikes": 10, "mDislikes": 2, "mComment": "Nice work!", "mImage": null},
   ];
 
   // Function to print the database (messages list) as JSON
@@ -113,6 +113,7 @@ class _FigmaToCodeAppState extends State<FigmaToCodeApp> {
         "mLikes": 0, // Initial likes
         "mDislikes": 0, // Initial dislikes
         "mComment": null, // Empty comment initially
+        "mImage": null, //empty image initially
       });
     });
 
@@ -129,6 +130,7 @@ class _FigmaToCodeAppState extends State<FigmaToCodeApp> {
         "mLikes": 0, // Initial likes
         "mDislikes": 0, // Initial dislikes
         "mComment": null, // Empty comment initially
+        "mImage": null, //empty image initially
       });
     });
 
@@ -172,10 +174,10 @@ class _FigmaToCodeAppState extends State<FigmaToCodeApp> {
   void updateCommentImage(int id, File? image){
     setState(() {
       final message = messages.firstWhere((msg) => msg['mId'] == id);
-      message['mComment'] = image?.path;
+      message['mImage'] = image;
     });
 
-    print('Comment updated for message ID $id with the file path');
+    print('Comment updated for message ID $id with the image');
     printDatabase(); // Print updated database
   }
 
