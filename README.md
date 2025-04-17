@@ -1,5 +1,5 @@
 # CSE 216 Team Repo
-This is a team repository.  It is intended for use during phase 1 and beyond.
+This is a team repository. 
 
 ## Details
 - Semester: Fall 2024
@@ -7,11 +7,11 @@ This is a team repository.  It is intended for use during phase 1 and beyond.
 - Team Name: git-gud
 
 ## Team Members and contact info:
-- PM: Aliza Askari ala326@lehigh.edu
-- Backend: Sam Deitch/smd226@lehigh.edu
+- PM and mobile: Aliza Askari ala326@lehigh.edu
+- Backend and mobile: Sam Deitch/smd226@lehigh.edu
 - Web Frontend: Anders Heyniger/avh226@lehigh.edu
 - Admin: Brian Badillo/bdb226@lehigh.edu
-- Mobile: Ash Niemann/asn226@lehigh.edu
+- Mobile and Frontend: Ash Niemann/asn226@lehigh.edu
 
 - Bitbucket Repository: https://bitbucket.org/sml3/cse216_fa24_team_21
 - Jira Board: https://cse216-24sp-ala326.atlassian.net/jira/software/projects/GGT2/boards/35?atlOrigin=eyJpIjoiMmRhYmY4NmMxOTE5NDZmNWI5ZTM4NzU4OTFjNjkxZjIiLCJwIjoiaiJ9
